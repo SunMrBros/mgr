@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>栀旅金融</title>
+<title>河北科普后台</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 <link href="<%=path %>/dwz/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
