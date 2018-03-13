@@ -2,7 +2,7 @@ package com.my.util.vo;
 
 import java.util.Date;
 
-public class WebValues {
+public class WebVo {
 
 	private String id;
 	

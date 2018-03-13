@@ -15,7 +15,7 @@ import com.my.service.ColumnService;
 import com.my.util.StringUtil;
 import com.my.util.vo.AjaxResponse;
 import com.my.util.vo.PageValues;
-import com.my.util.vo.WebValues;
+import com.my.util.vo.WebVo;
 
 import my.utils.web.page.Page;
 import my.utils.web.page.ParamCondition;
@@ -34,7 +34,7 @@ public class ColumnController {
 	private ColumnService columnService;
 	
 	@RequestMapping("/getColumnPage")
-	public ModelAndView getColumnPage(PageValues pageValues,WebValues webValues){
+	public ModelAndView getColumnPage(PageValues pageValues,WebVo webValues){
 		ModelAndView mv=new ModelAndView();
 		QueryParams query=new QueryParams();
 		String title =webValues.getTitle();
@@ -67,6 +67,13 @@ public class ColumnController {
 		res.setStatusCode("200");
 		res.setMessage("操作成功");
 		return res;
+		
+	}
+	@RequestMapping("/upload")
+	public AjaxResponse upload( MultipartFile file){
+		AjaxResponse ajaxR=new AjaxResponse();
+		
+		return ajaxR;
 		
 	}
 }

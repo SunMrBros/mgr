@@ -22,7 +22,7 @@ import com.my.util.VerifyCodeUtils;
 import com.my.util.enums.AdminEnums;
 import com.my.util.vo.AjaxResponse;
 import com.my.util.vo.PageValues;
-import com.my.util.vo.WebValues;
+import com.my.util.vo.WebVo;
 
 import my.utils.MD5Tools;
 import my.utils.web.page.Page;
@@ -48,7 +48,7 @@ public class MainController {
 	}
 
 	@RequestMapping("/login")
-	public String login(WebValues webValues, HttpSession session, HttpServletRequest request) {
+	public String login(WebVo webValues, HttpSession session, HttpServletRequest request) {
 		String loginname = webValues.getLoginname();
 		String password = webValues.getPassword();
 		String code = webValues.getCode();
@@ -129,7 +129,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/getAdmins")
-	public ModelAndView getAdmins(@ModelAttribute WebValues webValues, @ModelAttribute PageValues pageValues) {
+	public ModelAndView getAdmins(@ModelAttribute WebVo webValues, @ModelAttribute PageValues pageValues) {
 		ModelAndView mv = new ModelAndView();
 		String realName = webValues.getRealName();
 		QueryParams queryParams = new QueryParams();
@@ -148,7 +148,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/toEditAdmin")
-	public ModelAndView toEditAdmin(WebValues webValues) {
+	public ModelAndView toEditAdmin(WebVo webValues) {
 		ModelAndView mv = new ModelAndView();
 		String id = webValues.getId();
 		if (StringUtil.isBlank(id)) {
@@ -167,7 +167,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/updateAdmin")
-	public @ResponseBody AjaxResponse updateAdmin(WebValues webValues) {
+	public @ResponseBody AjaxResponse updateAdmin(WebVo webValues) {
 		AjaxResponse res=new AjaxResponse();
 		boolean flag=false;
 		String id = webValues.getId();
@@ -211,7 +211,7 @@ public class MainController {
 		return res;
 	}
 	@RequestMapping("/deleteAdmin")
-	public  @ResponseBody AjaxResponse deleteAdmin(WebValues webValues){
+	public  @ResponseBody AjaxResponse deleteAdmin(WebVo webValues){
 		AjaxResponse res=new AjaxResponse();
 		boolean flag=false;
 		if(!StringUtil.isBlank(webValues.getId())){
@@ -265,7 +265,7 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/isExist")
-	public @ResponseBody boolean isExist(@ModelAttribute WebValues webValuse){
+	public @ResponseBody boolean isExist(@ModelAttribute WebVo webValuse){
 		boolean flag = false;
 		if (!StringUtil.isBlank(webValuse.getLoginname())) {
 			flag = adminService.isExist(webValuse.getLoginname());
@@ -278,7 +278,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/tochangepass")
-	public String tochgpass(@ModelAttribute WebValues webValues){
+	public String tochgpass(@ModelAttribute WebVo webValues){
 		
 		return "changepass";
 	}
@@ -290,7 +290,7 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/isOldpasswordright")
-	public @ResponseBody boolean isOldpasswordright(@ModelAttribute WebValues webValues) {
+	public @ResponseBody boolean isOldpasswordright(@ModelAttribute WebVo webValues) {
 		boolean flag = false;
 		if (!StringUtil.isBlank(webValues.getOldpassword())&&!StringUtil.isBlank(webValues.getId())) {
 			String enpass=MD5Tools.getKeyedDigest(webValues.getOldpassword(), "");
@@ -305,7 +305,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/changepass")
-	public @ResponseBody AjaxResponse changepass(@ModelAttribute WebValues webValues){
+	public @ResponseBody AjaxResponse changepass(@ModelAttribute WebVo webValues){
 		logger.info("修改密码");
 		AjaxResponse res=new AjaxResponse();
 		boolean flag = false;
