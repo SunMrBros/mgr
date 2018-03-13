@@ -1,0 +1,30 @@
+package com.my.exception;
+
+/**
+ * 
+ * <p>Title: CustomException</p>
+ * <p>Description:系统 自定义异常类，针对预期的异常，需要在程序中抛出此类的异常 </p>
+ * @version 1.0
+ */
+public class CustomException extends RuntimeException {
+	
+	private static final long serialVersionUID = 1L;
+	//异常信息
+	public String message;
+	
+	public CustomException(String message){
+		super(message);
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
+
+}
