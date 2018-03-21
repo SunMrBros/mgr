@@ -2,6 +2,8 @@ package com.my.util.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class WebVo {
 
 	private String id;
@@ -19,8 +21,24 @@ public class WebVo {
 	
 	private String title;
 	
+	private String columnName;
+	private String columnId;
 	
+	private MultipartFile file;
+	private MultipartFile[] files;
 	
+	public String getColumnId() {
+		return columnId;
+	}
+	public void setColumnId(String columnId) {
+		this.columnId = columnId;
+	}
+	public String getColumnName() {
+		return columnName;
+	}
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -86,6 +104,18 @@ public class WebVo {
 	}
 	public void setOldpassword(String oldpassword) {
 		this.oldpassword = oldpassword;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	public MultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(MultipartFile[] files) {
+		this.files = files;
 	}
 	
 	

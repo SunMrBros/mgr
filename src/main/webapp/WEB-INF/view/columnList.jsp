@@ -11,8 +11,8 @@
 %>
 <form id="pagerForm" method="post" action="<%=path%>/column/getColumnPage.action">
 	<input type="hidden" name="pageNum" value="1"/>
-	<input type="hidden"name="numPerPage"value="${columnPage.pageSize }"/>
-	<input type="hidden" name="title" value="${webValues.title}"/>
+	<input type="hidden"name="numPerPage" value="${columnPage.pageSize }"/>
+	<input type="hidden" name="columnName" value="${webValues.columnName}"/>
 </form>
 
 
@@ -22,7 +22,7 @@
 		<div class="searchBar">
 			<table class="searchContent">
 				<tr>
-					<td>标题：<input type="text" name="title" value="${webValues.title }"/>
+					<td>栏目名称：<input type="text" name="columnName" value="${webValues.columnName }"/>
 					</td>
 				</tr>
 			</table>
@@ -38,19 +38,19 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<%=path %>/column/toAddColumn.action" target="dialog" rel="add_column"><span>添加</span></a></li>
-			<li><a class="delete" href="<%=path %>/column/delColumn.action?id={column_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="<%=path %>/column/toEditColumn.action?id={column_id}" target="navTab" rel="edit_column"><span>修改</span></a></li>
+			<li><a class="add" href="<%=path %>/column/toAddColumn.action" target="dialog" rel="add_column"><span>添加栏目信息</span></a></li>
+			<li><a class="delete" href="<%=path %>/column/delColumn.action?columnId={column_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除栏目</span></a></li>
+			<li><a class="edit" href="<%=path %>/column/toEditColumn.action?columnId={column_id}" target="navTab" rel="edit_column"><span>修改栏目</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
 	<table class="list" width="100%" layoutH="138">
 		<thead>
 			<tr>
-				<th width="80">序号</th>
+				<th width="80" align="center">序号</th>
 				<th width="50" align="center">栏目名称</th>
-				<th width="100">栏目图片<th>
-				<th width="50">排序</th>
+				<th width="100" align="center">栏目图片</th>
+				<th width="50" align="center">排序</th>
 				<th width="50" align="center">状态</th>
 			</tr>
 		</thead>
@@ -58,11 +58,11 @@
 			<c:forEach items="${columnPage.results }" var="column">
 
 				<tr target="column_id" rel="${column.id }">
-					<td>${column.id }</td>
-					<td>${column.columnName }</td>
-					<td><img src="${column.columnPicUrl }"/></td>
-					<td>${column.sortNum }</td>
-					<td>${column.status }</td>
+					<td align="center">${column.id }</td>
+					<td align="center">${column.columnName }</td>
+					<td align="center"><img src="${column.columnPicUrl }" height="80" width="150"/></td>
+					<td align="center" width="50">${column.sortNum }</td>
+					<td align="center" width="60"><c:if test="${column.status==1 }">正常</c:if><c:if test="${column.status==0}">禁用</c:if></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -78,8 +78,7 @@
 			</select> <span>条，共${columnPage.totalCount}条</span>
 		</div>
 
-		<div class="pagination" targetType="navTab" totalCount="${columnPage.totalCount}"
-			numPerPage="${columnPage.pageSize}" pageNumShown="15" currentPage="${columnPage.pageNum}"></div>
+		<div class="pagination" targetType="navTab" totalCount="${columnPage.totalCount}" numPerPage="${columnPage.pageSize}" pageNumShown="5" currentPage="${columnPage.pageNum}"></div>
 
 	</div>
 </div>

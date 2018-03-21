@@ -15,4 +15,24 @@ public interface ColumnService {
 	 */
 	public Page<ColumnInfo> getColumnPage(PageValues pageValues ,QueryParams query);
 
+	/**
+	 * 保存栏目
+	 * @param column
+	 * @return
+	 */
+	public boolean save(ColumnInfo column);
+
+	/**
+	 * columnId 获取栏目
+	 * @param valueOf
+	 * @return
+	 */
+	public ColumnInfo getColumnById(Integer columnId);
+
+	/**
+	 * 删除栏目信息
+	 * @param columnId
+	 */
+	public void delColumnInfo(ColumnInfo column);
+
 }

@@ -4,6 +4,15 @@ public class PageValues {
 
 	private int pageNum;
 	private int pageSize;
+	private int numPerPage;
+	
+	  
+	public int getNumPerPage() {
+		return numPerPage;
+	}
+	public void setNumPerPage(int numPerPage) {
+		this.numPerPage = numPerPage;
+	}
 	public int getPageNum() {
 		return pageNum;
 	}
