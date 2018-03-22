@@ -9,29 +9,35 @@
 %>
 <div class="pageContent">
 	<form enctype="multipart/form-data" method="post"
-		action="<%=path%>/column/addColumn.action"
+		action="<%=path%>/column/updateColumn.action"
 		class="pageForm required-validate"
 		onsubmit="return iframeCallback(this,dialogAjaxDone);" >
 		<div class="pageFormContent" layoutH="56">
 			<p>
+				<input type="hidden" name="columnId" value="${column.id }"/>
 				<label>栏目名称：</label> <input name="columnName" type="text" size="30"
-					class="required" />
+					class="required" value="${column.columnName }"/>
 			</p>
 			<p>
-				<label>上传图片：</label>
-			<div class="upload-wrap">
-				<input id="testFileInput" type="file" name="file1" />
-			</div>
+				<label>图片：</label>
+				<img height="80" width="150" src="${column.columnPicUrl }"/>
+			</p>
+			<p></p>
+			<p>
+				<label>修改图片：</label>
+				<div class="upload-wrap">
+					<input id="testFileInput" type="file" name="file" />
+				</div>
 			</p>
 			<p>
 				<label>栏目序号：</label> <input name="sortNum" class="required"
-					type="text" size="30" />
+					type="text" size="30" value="${column.sortNum }" />
 			</p>
 			<p>
 				<label>状态：</label> <select name="status" class="required combox">
 					<option value="">请选择</option>
-					<option value="1">正常</option>
-					<option value="0">禁用</option>
+					<option value="1" <c:if test="${column.status==1 }"> selected="selected"</c:if>>正常</option>
+					<option value="0" <c:if test="${column.status==0 }"> selected="selected"</c:if>>禁用</option>
 				</select>
 			</p>
 		</div>
@@ -40,7 +46,7 @@
 				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
 				<li><div class="buttonActive">
 						<div class="buttonContent">
-							<button type="submit">保存</button>
+							<button type="submit">更新</button>
 						</div>
 					</div></li>
 				<li>
