@@ -42,6 +42,7 @@
 			<li><a class="delete" href="<%=path %>/lunbo/delLunbo.action?lunboId={lunbo_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除轮播图</span></a></li>
 			<li><a class="edit" href="<%=path %>/lunbo/toEditLunbo.action?lunboId={lunbo_id}" height="350" target="dialog" rel="edit_lunbo"><span>修改轮播图</span></a></li>
 			<li class="line">line</li>
+			<li><a class="icon" href="#" target="dwzExport" targetType="navTab" title="实要导出这些图片吗?"><span>全部导出</span></a></li>
 		</ul>
 	</div>
 	<table class="list" width="100%" layoutH="138">

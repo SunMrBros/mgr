@@ -155,9 +155,9 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="河北省基地信息管理">河北省基地信息管理</a></li>
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="北京市基地信息管理">北京市基地信息管理</a></li>
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="天津市基地信息管理">天津市基地信息管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="hebei" title="河北省基地信息管理">河北省基地信息管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="beijing" title="北京市基地信息管理">北京市基地信息管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="tianjin" title="天津市基地信息管理">天津市基地信息管理</a></li>
 						</ul>
 					</div> 	
 					
@@ -167,7 +167,7 @@ $(function(){
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
 							<li><a href="<%=path %>/column/getColumnPage.action" target="navTab" rel="column" title="栏目管理">栏目管理</a></li>
-							<li><a href="<%=path %>/column/getApplyOrderList.action" target="navTab" rel="demo_page1" title="线路管理">线路管理</a></li>
+							<li><a href="<%=path %>/route/getRoutesPage.action" target="navTab" rel="routes" title="线路管理">线路管理</a></li>
 						</ul>
 					</div>
 					
