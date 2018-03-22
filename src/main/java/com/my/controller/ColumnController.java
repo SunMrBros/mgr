@@ -98,6 +98,7 @@ public class ColumnController {
 			res.setStatusCode("200");
 			res.setMessage("操作成功");
 			res.setCallbackType("closeCurrent");
+			res.setNavTabId("column");
 		}else{
 			res.setStatusCode("300");
 			res.setMessage("操作失败");
@@ -157,16 +158,21 @@ public class ColumnController {
 		
 	}
 	/**
-	 * 删除栏目
+	 * 更新栏目
 	 * @param column
 	 * @return
 	 */
-	@RequestMapping("/editColumn")
-	public @ResponseBody AjaxResponse editColumn(WebVo webVo,HttpServletRequest request,HttpSession session){
+	@RequestMapping("/updateColumn")
+	public @ResponseBody AjaxResponse updateColumn(WebVo webVo,ColumnInfo co,HttpServletRequest request,HttpSession session){
 		AjaxResponse res=new AjaxResponse();
 		
 		try {
 			String columnId=webVo.getColumnId();
+			if(StringUtil.isBlank(columnId)){
+				res.setMessage("columnId is needed");
+				res.setStatusCode("300");
+				return res;
+			}
 			ColumnInfo column=columnService.getColumnById(Integer.valueOf(columnId));
 			String picurl=column.getColumnPicUrl();
 			String name=picurl.substring(picurl.lastIndexOf("/"));
@@ -178,17 +184,46 @@ public class ColumnController {
 					f.delete();
 				}
 			}
+			//保存新图片
+			MultipartFile file=webVo.getFile();
+			String filename=file.getOriginalFilename();
+			if(!StringUtil.isBlank(filename)){
+				String nfile=System.currentTimeMillis()+filename.substring(filename.indexOf("."));
+				//保存Eclipse中路径
+				String absPath=session.getServletContext().getRealPath("/")+"/column";
+				//数据库中路径
+				String path=request.getContextPath()+"/column/"+nfile;
+				File local=new File(absPath,nfile);
+				if(!local.exists()){
+					local.mkdirs();
+				}
+				try {
+					file.transferTo(local);
+					column.setColumnPicUrl(path);
+				} catch (IOException e) {
+					logger.error("保存栏目文件异常"+e.toString());
+					e.printStackTrace();
+					res.setStatusCode("300");
+					res.setMessage("保存文件出错啦");
+				}
+			}
 			
-			//数据库删除数据
-			columnService.delColumnInfo(column);
+			//更新数据
+			column.setColumnName(co.getColumnName());
+			column.setSortNum(co.getSortNum());
+			column.setStatus(co.getStatus());
+			
+			columnService.updateColumnInfo(column);
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setMessage("删除栏目异常");
+			res.setMessage("更新栏目异常");
 			res.setStatusCode("300");
 			return res;
 		}
-		res.setMessage("删除栏目完成");
+		res.setMessage("更新栏目完成");
 		res.setStatusCode("200");
+		res.setCallbackType("closeCurrent");
+		res.setNavTabId("column");
 		return res;
 		
 	}
