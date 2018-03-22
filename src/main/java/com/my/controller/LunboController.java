@@ -16,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.exception.CustomException;
-import com.my.po.ColumnInfo;
-import com.my.service.ColumnService;
+import com.my.po.LunboInfo;
+import com.my.service.LunboService;
 import com.my.util.StringUtil;
 import com.my.util.vo.AjaxResponse;
 import com.my.util.vo.PageValues;
@@ -30,66 +30,66 @@ import my.utils.web.page.ParamDirect;
 import my.utils.web.page.QueryParams;
 
 /**
- * 栏目管理控制层
+ * 轮播图控制层
  * @author KangZheng
  *
  */
 @Controller
-@RequestMapping("/column")
-public class ColumnController {
-	private static Logger logger=Logger.getLogger(ColumnController.class.getName());
+@RequestMapping("/lunbo")
+public class LunboController {
+	private static Logger logger=Logger.getLogger(LunboController.class.getName());
 	@Autowired
-	private ColumnService columnService;
+	private LunboService lunboService;
 	
-	@RequestMapping("/getColumnPage")
-	public ModelAndView getColumnPage(@ModelAttribute PageValues pageValues,@ModelAttribute WebVo webValues){
+	@RequestMapping("/getLunboPage")
+	public ModelAndView getLunboPage(@ModelAttribute PageValues pageValues,@ModelAttribute WebVo webValues){
 		ModelAndView mv=new ModelAndView();
 		QueryParams query=new QueryParams();
-		String columnName =webValues.getColumnName();
-		if(!StringUtil.isBlank(columnName)){
-			query.getConditions().add(new ParamCondition("columnName",columnName));
+		String title =webValues.getTitle();
+		if(!StringUtil.isBlank(title)){
+			query.getConditions().add(new ParamCondition("title",title));
 		}
 		query.getDirects().add(new ParamDirect("sortNum",Direct.ASC));
-		Page<ColumnInfo> columnPage=columnService.getColumnPage(pageValues,query);
-		mv.addObject("columnPage", columnPage);
-		mv.setViewName("column/columnList");
+		Page<LunboInfo> lunboPage=lunboService.getLunboPage(pageValues,query);
+		mv.addObject("lunboPage", lunboPage);
+		mv.setViewName("lunbo/lunboList");
 		return mv;
 	}
 	/**
 	 * 跳转页面
 	 * @return
 	 */
-	@RequestMapping("/toAddColumn")
-	public String toAddColumn(){
+	@RequestMapping("/toAddLunbo")
+	public String toAddLunbo(){
 		
-		return "addColumn";
+		return "lunbo/addLunbo";
 	}
 	/**
-	 * 添加栏目
-	 * @param column
+	 * 添加轮播图
+	 * @param Lunbo
 	 * @return
 	 */
-	@RequestMapping("/addColumn")
-	public @ResponseBody AjaxResponse addColumn(ColumnInfo column, MultipartFile file1,HttpServletRequest request,HttpSession session){
+	@RequestMapping("/addLunbo")
+	public @ResponseBody AjaxResponse addLunbo(LunboInfo lunbo, MultipartFile file,HttpServletRequest request,HttpSession session){
 		AjaxResponse res=new AjaxResponse();
 		boolean flag=false;
-		String filename=file1.getOriginalFilename();
+		String filename=file.getOriginalFilename();
 		String nfile=System.currentTimeMillis()+filename.substring(filename.indexOf("."));
 		//保存Eclipse中路径
-		String absPath=session.getServletContext().getRealPath("/")+"/column";
+		String absPath=session.getServletContext().getRealPath("/")+"/lunbo";
 		//数据库中路径
-		String path=request.getContextPath()+"/column/"+nfile;
-		File file=new File(absPath,nfile);
-		if(!file.exists()){
-			file.mkdirs();
+		String path=request.getContextPath()+"/lunbo/"+nfile;
+		File file1=new File(absPath,nfile);
+		if(!file1.exists()){
+			file1.mkdirs();
 		}
 		try {
-			file1.transferTo(file);
+			file.transferTo(file1);
 			
-			column.setColumnPicUrl(path);
-			flag=columnService.save(column);
+			lunbo.setPicurl(path);
+			flag=lunboService.save(lunbo);
 		} catch (IOException e) {
-			logger.error("保存栏目文件异常"+e.toString());
+			logger.error("保存轮播图文件异常"+e.toString());
 			e.printStackTrace();
 			res.setStatusCode("300");
 			res.setMessage("保存文件出错啦");
@@ -98,7 +98,7 @@ public class ColumnController {
 			res.setStatusCode("200");
 			res.setMessage("操作成功");
 			res.setCallbackType("closeCurrent");
-			res.setNavTabId("column");
+			res.setNavTabId("lunbo");
 		}else{
 			res.setStatusCode("300");
 			res.setMessage("操作失败");
@@ -108,22 +108,22 @@ public class ColumnController {
 		
 	}
 	/**
-	 * 删除栏目
+	 * 删除轮播图
 	 * @param column
 	 * @return
 	 */
-	@RequestMapping("/delColumn")
-	public @ResponseBody AjaxResponse delColumn(WebVo webVo,HttpServletRequest request,HttpSession session){
+	@RequestMapping("/delLunbo")
+	public @ResponseBody AjaxResponse delLunbo(WebVo webVo,HttpServletRequest request,HttpSession session){
 		AjaxResponse res=new AjaxResponse();
 		
 		try {
-			String columnId=webVo.getColumnId();
-			ColumnInfo column=columnService.getColumnById(Integer.valueOf(columnId));
-			String picurl=column.getColumnPicUrl();
+			String columnId=webVo.getLunboId();
+			LunboInfo lunbo=lunboService.getLunboById(Integer.valueOf(columnId));
+			String picurl=lunbo.getPicurl();
 			String name=picurl.substring(picurl.lastIndexOf("/"));
 			if(!StringUtil.isBlank(picurl)){
-				String local=session.getServletContext().getRealPath("/column");
-				//删除栏目图片信息
+				String local=session.getServletContext().getRealPath("/lunbo");
+				//删除轮播图图片信息
 				File f=new File(local,name);
 				if(f.exists()){
 					f.delete();
@@ -131,54 +131,54 @@ public class ColumnController {
 			}
 			
 			//数据库删除数据
-			columnService.delColumnInfo(column);
+			lunboService.delLunboInfo(lunbo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setMessage("删除栏目异常");
+			res.setMessage("删除轮播图异常");
 			res.setStatusCode("300");
 			return res;
 		}
-		res.setMessage("删除栏目完成");
+		res.setMessage("删除轮播图完成");
 		res.setStatusCode("200");
 		return res;
 		
 	}
 	
-	@RequestMapping("/toEditColumn")
-	public ModelAndView toEditColumn(WebVo webVo){
+	@RequestMapping("/toEditLunbo")
+	public ModelAndView toEditLunbo(WebVo webVo){
 		ModelAndView mv=new ModelAndView();
-		String columnId=webVo.getColumnId();
-		if(StringUtil.isBlank(columnId)){
-			throw new CustomException("columnId is needed");
+		String lunboId=webVo.getLunboId();
+		if(StringUtil.isBlank(lunboId)){
+			throw new CustomException("lunboId is needed");
 		}
-		ColumnInfo column=columnService.getColumnById(Integer.valueOf(columnId));
-		mv.setViewName("column/editColumn");
-		mv.addObject("column", column);
+		LunboInfo lunbo=lunboService.getLunboById(Integer.valueOf(lunboId));
+		mv.setViewName("lunbo/editLunbo");
+		mv.addObject("lunbo", lunbo);
 		return mv;
 		
 	}
 	/**
-	 * 更新栏目
-	 * @param column
+	 * 更新轮播图
+	 * @param lunbo
 	 * @return
 	 */
-	@RequestMapping("/updateColumn")
-	public @ResponseBody AjaxResponse updateColumn(WebVo webVo,ColumnInfo co,HttpServletRequest request,HttpSession session){
+	@RequestMapping("/updateLunbo")
+	public @ResponseBody AjaxResponse updateLunbo(WebVo webVo,LunboInfo co,HttpServletRequest request,HttpSession session){
 		AjaxResponse res=new AjaxResponse();
 		
 		try {
-			String columnId=webVo.getColumnId();
-			if(StringUtil.isBlank(columnId)){
-				res.setMessage("columnId is needed");
+			String lunboId=webVo.getLunboId();
+			if(StringUtil.isBlank(lunboId)){
+				res.setMessage("lunboId is needed");
 				res.setStatusCode("300");
 				return res;
 			}
-			ColumnInfo column=columnService.getColumnById(Integer.valueOf(columnId));
-			String picurl=column.getColumnPicUrl();
+			LunboInfo lunbo=lunboService.getLunboById(Integer.valueOf(lunboId));
+			String picurl=lunbo.getPicurl();
 			String name=picurl.substring(picurl.lastIndexOf("/"));
 			if(!StringUtil.isBlank(picurl)){
-				String local=session.getServletContext().getRealPath("/column");
-				//删除栏目图片信息
+				String local=session.getServletContext().getRealPath("/lunbo");
+				//删除轮播图图片信息
 				File f=new File(local,name);
 				if(f.exists()){
 					f.delete();
@@ -190,18 +190,18 @@ public class ColumnController {
 			if(!StringUtil.isBlank(filename)){
 				String nfile=System.currentTimeMillis()+filename.substring(filename.indexOf("."));
 				//保存Eclipse中路径
-				String absPath=session.getServletContext().getRealPath("/")+"/column";
+				String absPath=session.getServletContext().getRealPath("/")+"/lunbo";
 				//数据库中路径
-				String path=request.getContextPath()+"/column/"+nfile;
+				String path=request.getContextPath()+"/lunbo/"+nfile;
 				File local=new File(absPath,nfile);
 				if(!local.exists()){
 					local.mkdirs();
 				}
 				try {
 					file.transferTo(local);
-					column.setColumnPicUrl(path);
+					lunbo.setPicurl(path);
 				} catch (IOException e) {
-					logger.error("保存栏目文件异常"+e.toString());
+					logger.error("保存轮播图文件异常"+e.toString());
 					e.printStackTrace();
 					res.setStatusCode("300");
 					res.setMessage("保存文件出错啦");
@@ -209,21 +209,21 @@ public class ColumnController {
 			}
 			
 			//更新数据
-			column.setColumnName(co.getColumnName());
-			column.setSortNum(co.getSortNum());
-			column.setStatus(co.getStatus());
+			lunbo.setTitle(co.getTitle());
+			lunbo.setSortNum(co.getSortNum());
+			lunbo.setStatus(co.getStatus());
 			
-			columnService.updateColumnInfo(column);
+			lunboService.updateLunboInfo(lunbo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setMessage("更新栏目异常");
+			res.setMessage("更新轮播图异常");
 			res.setStatusCode("300");
 			return res;
 		}
-		res.setMessage("更新栏目完成");
+		res.setMessage("更新轮播图完成");
 		res.setStatusCode("200");
 		res.setCallbackType("closeCurrent");
-		res.setNavTabId("column");
+		res.setNavTabId("lunbo");
 		return res;
 		
 	}

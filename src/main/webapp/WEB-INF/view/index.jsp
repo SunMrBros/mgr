@@ -146,7 +146,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="轮播图管理">轮播图管理</a></li>
+							<li><a href="<%=path %>/lunbo/getLunboPage.action" target="navTab" rel="lunbo" title="轮播图管理">轮播图管理</a></li>
 						</ul>
 					</div>
 					
@@ -155,9 +155,9 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="轮播图管理">河北省基地信息管理</a></li>
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="轮播图管理">北京市基地信息管理</a></li>
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="轮播图管理">天津市基地信息管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="河北省基地信息管理">河北省基地信息管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="北京市基地信息管理">北京市基地信息管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="天津市基地信息管理">天津市基地信息管理</a></li>
 						</ul>
 					</div> 	
 					

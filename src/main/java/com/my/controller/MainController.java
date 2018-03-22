@@ -138,7 +138,7 @@ public class MainController {
 			queryParams.getConditions().add(new ParamCondition("realName", realName));
 		}
 		Page<AdminInfo> adminPage = adminService.getAdminPage(pageValues, queryParams);
-		mv.addObject("adminPage", adminPage);
+		mv.addObject("admin/adminPage", adminPage);
 		mv.setViewName("adminList");
 		return mv;
 	}
@@ -157,7 +157,7 @@ public class MainController {
 		} else {
 			AdminInfo admin = adminService.getAdminById(Integer.valueOf(id));
 			mv.addObject("admin", admin);
-			mv.setViewName("editAdmin");
+			mv.setViewName("admin/editAdmin");
 		}
 		return mv;
 	}
@@ -235,7 +235,7 @@ public class MainController {
 	 */
 	@RequestMapping("/toAddAdmin")
 	public String toAddAdmin(){
-		return "addAdmin";
+		return "admin/addAdmin";
 	}
 	
 	/**

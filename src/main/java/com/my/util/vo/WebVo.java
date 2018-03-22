@@ -24,6 +24,8 @@ public class WebVo {
 	private String columnName;
 	private String columnId;
 	
+	private String lunboId;
+	
 	private MultipartFile file;
 	private MultipartFile[] files;
 	
@@ -116,6 +118,12 @@ public class WebVo {
 	}
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
+	}
+	public String getLunboId() {
+		return lunboId;
+	}
+	public void setLunboId(String lunboId) {
+		this.lunboId = lunboId;
 	}
 	
 	
