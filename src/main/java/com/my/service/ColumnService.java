@@ -35,4 +35,10 @@ public interface ColumnService {
 	 */
 	public void delColumnInfo(ColumnInfo column);
 
+	/**
+	 * 更新栏目信息
+	 * @param column
+	 */
+	public void updateColumnInfo(ColumnInfo column);
+
 }

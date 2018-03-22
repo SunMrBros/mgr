@@ -133,6 +133,7 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		String realName = webValues.getRealName();
 		QueryParams queryParams = new QueryParams();
+		pageValues.setPageSize(pageValues.getNumPerPage());
 		if (!StringUtil.isBlank(realName)) {
 			queryParams.getConditions().add(new ParamCondition("realName", realName));
 		}

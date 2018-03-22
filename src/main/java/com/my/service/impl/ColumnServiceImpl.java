@@ -47,4 +47,9 @@ public class ColumnServiceImpl implements ColumnService {
 		columnDao.delete(column);
 	}
 
+	@Override
+	public void updateColumnInfo(ColumnInfo column) {
+		columnDao.update(column);
+	}
+
 }

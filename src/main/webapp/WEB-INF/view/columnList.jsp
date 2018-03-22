@@ -40,7 +40,7 @@
 		<ul class="toolBar">
 			<li><a class="add" href="<%=path %>/column/toAddColumn.action" target="dialog" rel="add_column"><span>添加栏目信息</span></a></li>
 			<li><a class="delete" href="<%=path %>/column/delColumn.action?columnId={column_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除栏目</span></a></li>
-			<li><a class="edit" href="<%=path %>/column/toEditColumn.action?columnId={column_id}" target="navTab" rel="edit_column"><span>修改栏目</span></a></li>
+			<li><a class="edit" href="<%=path %>/column/toEditColumn.action?columnId={column_id}" height="350" target="dialog" rel="edit_column"><span>修改栏目</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
@@ -55,10 +55,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${columnPage.results }" var="column">
+			<c:forEach items="${columnPage.results }" var="column" varStatus="index">
 
 				<tr target="column_id" rel="${column.id }">
-					<td align="center">${column.id }</td>
+					<td align="center">${(columnPage.pageNum-1)*pageSize+index.index+1 }</td>
 					<td align="center">${column.columnName }</td>
 					<td align="center"><img src="${column.columnPicUrl }" height="80" width="150"/></td>
 					<td align="center" width="50">${column.sortNum }</td>
