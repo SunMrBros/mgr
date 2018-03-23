@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.exception.CustomException;
 import com.my.po.ColumnInfo;
 import com.my.po.RoutesInfo;
 import com.my.service.ColumnService;
@@ -134,5 +135,138 @@ public class RoutesController {
 		}
 		return res;
 		
+	}
+	/**
+	 * 跳转编辑线路页
+	 * @return
+	 */
+	@RequestMapping("/toEditRoute")
+	public ModelAndView toEditRoute(WebVo webVo){
+		logger.info("编辑线路");
+		ModelAndView mv=new ModelAndView();
+		String routeId=webVo.getRouteId();
+		if(StringUtil.isBlank(routeId)){
+			throw new CustomException("routeId is needed");
+		}
+		RoutesInfo route=routesService.getRouteById(Integer.valueOf(routeId));
+		List<ColumnInfo> columns=columnService.getColumnList();
+		mv.setViewName("route/editRoute");
+		mv.addObject("columns", columns);
+		mv.addObject("route", route);
+		return mv;
+		
+	}
+	
+	/**
+	 * 更新线路图
+	 * @param route
+	 * @return
+	 */
+	@RequestMapping("/updateRoute")
+	public @ResponseBody AjaxResponse updateRoute(WebVo webVo, RoutesInfo route, MultipartFile file1,
+			MultipartFile file2, HttpServletRequest request, HttpSession session) {
+		AjaxResponse res = new AjaxResponse();
+
+		try {
+			String routeId = webVo.getRouteId();
+			String columnId=webVo.getColumnId();
+			if (StringUtil.isBlank(routeId)||StringUtil.isBlank(columnId)) {
+				res.setMessage("routeId or columnId is needed");
+				res.setStatusCode("300");
+				return res;
+			}
+			RoutesInfo oldR = routesService.getRouteById(Integer.valueOf(routeId));
+
+			String pic1 = file1.getOriginalFilename();
+			String pic2 = file2.getOriginalFilename();
+			if (!StringUtil.isBlank(pic1)) {
+				// basePic1图片更新,删除basePic1原有图片
+				String basePic1 = oldR.getBasePic1();
+				if(!StringUtil.isBlank(basePic1)){
+					String name = basePic1.substring(basePic1.lastIndexOf("/"));
+					
+					String local = session.getServletContext().getRealPath("/route");
+					// 删除轮播图图片信息
+					File f = new File(local, name);
+					if (f.exists()) {
+						f.delete();
+					}
+				}
+				
+				// 保存新图片
+				String filename = file1.getOriginalFilename();
+				String nfile = System.currentTimeMillis() + filename.substring(filename.indexOf("."));
+				// 保存Eclipse中路径
+				String absPath = session.getServletContext().getRealPath("/") + "/route";
+				// 数据库中路径
+				String path = request.getContextPath() + "/route/" + nfile;
+				File nlocal = new File(absPath, nfile);
+				
+				if (!nlocal.exists()) {
+					nlocal.mkdirs();
+					try {
+						file1.transferTo(nlocal);
+						route.setBasePic1(path);
+					} catch (IOException e) {
+						logger.error("保存轮播图文件异常" + e.toString());
+						e.printStackTrace();
+						res.setStatusCode("300");
+						res.setMessage("保存文件出错啦");
+					}
+				}
+			}
+			if (!StringUtil.isBlank(pic2)) {
+				// basePic1图片更新,删除basePic1原有图片
+				String basePic2 = oldR.getBasePic2();
+				if(!StringUtil.isBlank(basePic2)){
+					String name = basePic2.substring(basePic2.lastIndexOf("/"));
+					String local = session.getServletContext().getRealPath("/route");
+					// 删除轮播图图片信息
+					File f = new File(local, name);
+					if (f.exists()) {
+						f.delete();
+					}
+				}
+				
+				// 保存新图片
+				String filename = file1.getOriginalFilename();
+				String nfile = System.currentTimeMillis() + filename.substring(filename.indexOf("."));
+				// 保存Eclipse中路径
+				String absPath = session.getServletContext().getRealPath("/") + "/route";
+				// 数据库中路径
+				String path = request.getContextPath() + "/route/" + nfile;
+				File nlocal = new File(absPath, nfile);
+				if (!nlocal.exists()) {
+					nlocal.mkdirs();
+					try {
+						file2.transferTo(nlocal);
+						route.setBasePic2(path);
+					} catch (IOException e) {
+						logger.error("保存轮播图文件异常" + e.toString());
+						e.printStackTrace();
+						res.setStatusCode("300");
+						res.setMessage("保存文件出错啦");
+					}
+				}
+			}
+			
+			ColumnInfo column=columnService.getColumnById(Integer.valueOf(columnId));
+			oldR.setColumn(column);
+			oldR.setRouteDesc(route.getRouteDesc());
+			oldR.setSortNum(route.getSortNum());
+			oldR.setStatus(route.getStatus());
+			routesService.updateRoute(oldR);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setMessage("更新线路异常");
+			res.setStatusCode("300");
+			return res;
+		}
+		res.setMessage("更新完成");
+		res.setStatusCode("200");
+		res.setCallbackType("closeCurrent");
+		res.setNavTabId("routes");
+		return res;
+
 	}
 }

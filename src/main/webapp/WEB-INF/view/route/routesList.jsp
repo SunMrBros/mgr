@@ -42,9 +42,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-		<li><a class="add" href="<%=path %>/route/toAddRoute.action" target="dialog" width="620" height="600" rel="add_route"><span>添加线路</span></a></li>
+		<li><a class="add" href="<%=path %>/route/toAddRoute.action" target="dialog" width="620" height="620" rel="add_route"><span>添加线路</span></a></li>
 			<li><a class="delete" href="<%=path %>/route/delRoute.action?routeId={route_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除线路</span></a></li>
-			<li><a class="edit" href="<%=path %>/route/toEditRoute.action?routeId={route_id}" height="350" target="dialog" rel="edit_route"><span>修改线路</span></a></li>
+			<li><a class="edit" href="<%=path %>/route/toEditRoute.action?routeId={route_id}" width="620" height="620" target="dialog" rel="edit_route"><span>线路编辑</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>

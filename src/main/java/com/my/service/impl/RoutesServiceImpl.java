@@ -34,5 +34,16 @@ public class RoutesServiceImpl implements RoutesService {
 		}
 		return flag;
 	}
+
+	@Override
+	public RoutesInfo getRouteById(Integer routeId) {
+		return routeDao.getByID(routeId);
+	}
+
+	@Override
+	public void updateRoute(RoutesInfo route) {
+		routeDao.update(route);
+		
+	}
 	
 }

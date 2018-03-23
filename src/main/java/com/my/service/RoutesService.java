@@ -12,4 +12,8 @@ public interface RoutesService {
 
 	public boolean save(RoutesInfo route);
 
+	public RoutesInfo getRouteById(Integer routeId);
+
+	public void updateRoute(RoutesInfo route);
+
 }

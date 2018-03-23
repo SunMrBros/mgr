@@ -24,8 +24,17 @@ public class WebVo {
 	private String columnName;
 	private String columnId;
 	
+	private String routeId;
+	
 	private String lunboId;
 	
+	
+	public String getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
 	private MultipartFile file;
 	private MultipartFile[] files;
 	
