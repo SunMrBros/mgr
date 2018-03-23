@@ -138,8 +138,8 @@ public class MainController {
 			queryParams.getConditions().add(new ParamCondition("realName", realName));
 		}
 		Page<AdminInfo> adminPage = adminService.getAdminPage(pageValues, queryParams);
-		mv.addObject("admin/adminPage", adminPage);
-		mv.setViewName("adminList");
+		mv.addObject("adminPage", adminPage);
+		mv.setViewName("admin/adminList");
 		return mv;
 	}
 

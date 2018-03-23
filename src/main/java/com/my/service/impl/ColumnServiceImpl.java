@@ -1,5 +1,7 @@
 package com.my.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +52,11 @@ public class ColumnServiceImpl implements ColumnService {
 	@Override
 	public void updateColumnInfo(ColumnInfo column) {
 		columnDao.update(column);
+	}
+
+	@Override
+	public List<ColumnInfo> getColumnList() {
+		return columnDao.getListAll();
 	}
 
 }

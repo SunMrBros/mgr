@@ -17,7 +17,7 @@
 <link href="<%=path %>/dwz/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%=path %>/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<%=path %>/dwz/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
-<link href=""<%=path %>/dwz/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="<%=path %>/dwz/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
 <!--[if IE]>
 <link href="<%=path %>/dwz/themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
 <![endif]-->
@@ -176,7 +176,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="轮播图管理">轮播图管理</a></li>
+							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="demo_page1" title="操作日志">操作日志</a></li>
 						</ul>
 					</div>
 				</div>

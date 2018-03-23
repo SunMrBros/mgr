@@ -10,4 +10,6 @@ public interface RoutesService {
 
 	public Page<RoutesInfo> getRoutesPage(PageValues pageVo, QueryParams query);
 
+	public boolean save(RoutesInfo route);
+
 }

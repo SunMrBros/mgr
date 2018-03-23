@@ -21,5 +21,18 @@ public class RoutesServiceImpl implements RoutesService {
 	public Page<RoutesInfo> getRoutesPage(PageValues pageVo, QueryParams query) {
 		return routeDao.getPageList(pageVo.getPageNum()==0?1:pageVo.getPageNum(), pageVo.getPageSize(), query);
 	}
+
+	@Override
+	public boolean save(RoutesInfo route) {
+		boolean flag=false;
+		try {
+			routeDao.save(route);
+			flag= true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag=false;
+		}
+		return flag;
+	}
 	
 }

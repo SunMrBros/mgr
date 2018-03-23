@@ -1,5 +1,7 @@
 package com.my.service;
 
+import java.util.List;
+
 import com.my.po.ColumnInfo;
 import com.my.util.vo.PageValues;
 
@@ -40,5 +42,11 @@ public interface ColumnService {
 	 * @param column
 	 */
 	public void updateColumnInfo(ColumnInfo column);
+
+	/**
+	 * 获取所有column
+	 * @return
+	 */
+	public List<ColumnInfo> getColumnList();
 
 }

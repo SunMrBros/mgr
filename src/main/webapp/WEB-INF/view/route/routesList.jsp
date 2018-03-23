@@ -42,7 +42,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-		<li><a class="add" href="<%=path %>/route/toAddRoute.action" target="dialog" rel="add_route"><span>添加线路</span></a></li>
+		<li><a class="add" href="<%=path %>/route/toAddRoute.action" target="dialog" width="620" height="600" rel="add_route"><span>添加线路</span></a></li>
 			<li><a class="delete" href="<%=path %>/route/delRoute.action?routeId={route_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除线路</span></a></li>
 			<li><a class="edit" href="<%=path %>/route/toEditRoute.action?routeId={route_id}" height="350" target="dialog" rel="edit_route"><span>修改线路</span></a></li>
 			<li class="line">line</li>
@@ -62,12 +62,11 @@
 			<c:forEach items="${routesPage.results }" var="route">
 			
 			<tr target="route_id" rel="${route.id }">
-				<td>${route.id }</td>
-				<td>${route.title }</td>
-				<td>${route.basePic1 }</td>
-				<td>${route.column.columnName }</td>
-				<td>${route.status }</td>
-				<td><c:if test="${route.status ==1}">已经认证</c:if><c:if test="${route.status ==2}">等待认证</c:if><c:if test="${route.status ==3}">用户已经被删除</c:if></td>
+				<td align="center">${route.id }</td>
+				<td align="center">${route.title }</td>
+				<td align="center"><img src="<c:if test="${!empty route.basePic1 }">${route.basePic1 }</c:if>" height="80" width="150"/></td>
+				<td align="center">${route.column.columnName }</td>
+				<td align="center"><c:if test="${route.status==1 }">正常</c:if><c:if test="${route.status==0 }">禁用</c:if></td>
 			</tr>
 			</c:forEach>
 		</tbody>
