@@ -206,7 +206,7 @@ public class RoutesController {
 					nlocal.mkdirs();
 					try {
 						file1.transferTo(nlocal);
-						route.setBasePic1(path);
+						oldR.setBasePic1(path);
 					} catch (IOException e) {
 						logger.error("保存轮播图文件异常" + e.toString());
 						e.printStackTrace();
@@ -240,7 +240,7 @@ public class RoutesController {
 					nlocal.mkdirs();
 					try {
 						file2.transferTo(nlocal);
-						route.setBasePic2(path);
+						oldR.setBasePic2(path);
 					} catch (IOException e) {
 						logger.error("保存轮播图文件异常" + e.toString());
 						e.printStackTrace();
@@ -255,8 +255,10 @@ public class RoutesController {
 			oldR.setRouteDesc(route.getRouteDesc());
 			oldR.setSortNum(route.getSortNum());
 			oldR.setStatus(route.getStatus());
+			oldR.setTitle(route.getTitle());
 			routesService.updateRoute(oldR);
 		} catch (Exception e) {
+			logger.error(e.toString());
 			e.printStackTrace();
 			res.setMessage("更新线路异常");
 			res.setStatusCode("300");
@@ -265,7 +267,7 @@ public class RoutesController {
 		res.setMessage("更新完成");
 		res.setStatusCode("200");
 		res.setCallbackType("closeCurrent");
-		res.setNavTabId("routes");
+		res.setNavTabId("route");
 		return res;
 
 	}

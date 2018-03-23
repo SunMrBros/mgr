@@ -167,7 +167,7 @@ $(function(){
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
 							<li><a href="<%=path %>/column/getColumnPage.action" target="navTab" rel="column" title="栏目管理">栏目管理</a></li>
-							<li><a href="<%=path %>/route/getRoutesPage.action" target="navTab" rel="routes" title="线路管理">线路管理</a></li>
+							<li><a href="<%=path %>/route/getRoutesPage.action" target="navTab" rel="route" title="线路管理">线路管理</a></li>
 						</ul>
 					</div>
 					

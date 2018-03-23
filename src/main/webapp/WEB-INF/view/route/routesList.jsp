@@ -13,10 +13,6 @@
 	<input type="hidden" name="pageNum" value="1"/>
 	<input type="hidden"name="numPerPage"value="${routesPage.pageSize }"/>
 	<input type="hidden" name="title" value="${webVo.title}"/>
-	<input type="hidden" name="startDate" value="<fmt:formatDate value="${queryValue.startDate }" pattern="yyyy-MM-dd"/>" />
-	<input type="hidden" name="endDate" value="<fmt:formatDate value="${queryValue.endDate }" pattern="yyyy-MM-dd"/>" />
-	<input type="hidden" name="telephone" value="${queryValue.telephone }"/>
-	<input type="hidden" name="identifyid" value="${queryValue.identifyid }"/>
 </form>
 
 
