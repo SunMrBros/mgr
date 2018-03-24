@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.my.exception.CustomException;
 import com.my.po.LunboInfo;
+import com.my.service.LogService;
 import com.my.service.LunboService;
 import com.my.util.StringUtil;
 import com.my.util.vo.AjaxResponse;
@@ -40,7 +41,8 @@ public class LunboController {
 	private static Logger logger=Logger.getLogger(LunboController.class.getName());
 	@Autowired
 	private LunboService lunboService;
-	
+	@Autowired
+	private LogService log;
 	@RequestMapping("/getLunboPage")
 	public ModelAndView getLunboPage(@ModelAttribute PageValues pageValues,@ModelAttribute WebVo webValues){
 		ModelAndView mv=new ModelAndView();
@@ -88,6 +90,7 @@ public class LunboController {
 			
 			lunbo.setPicurl(path);
 			flag=lunboService.save(lunbo);
+			log.log(session,"轮播图","新增轮播图:"+lunbo.getTitle());
 		} catch (IOException e) {
 			logger.error("保存轮播图文件异常"+e.toString());
 			e.printStackTrace();
@@ -132,6 +135,7 @@ public class LunboController {
 			
 			//数据库删除数据
 			lunboService.delLunboInfo(lunbo);
+			log.log(session,"轮播图","删除轮播图:"+lunbo.getTitle());
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setMessage("删除轮播图异常");
@@ -214,6 +218,7 @@ public class LunboController {
 			lunbo.setStatus(co.getStatus());
 			
 			lunboService.updateLunboInfo(lunbo);
+			log.log(session,"轮播图","更新轮播图:"+lunbo.getTitle());
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setMessage("更新轮播图异常");

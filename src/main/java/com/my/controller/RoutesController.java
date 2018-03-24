@@ -20,6 +20,7 @@ import com.my.exception.CustomException;
 import com.my.po.ColumnInfo;
 import com.my.po.RoutesInfo;
 import com.my.service.ColumnService;
+import com.my.service.LogService;
 import com.my.service.RoutesService;
 import com.my.util.StringUtil;
 import com.my.util.vo.AjaxResponse;
@@ -48,6 +49,8 @@ public class RoutesController {
 	private RoutesService routesService;
 	@Autowired
 	private ColumnService columnService;
+	@Autowired
+	private LogService log;
 	
 	@RequestMapping("/getRoutesPage")
 	public ModelAndView getRoutesPage(@ModelAttribute WebVo webVo,PageValues pageVo){
@@ -124,6 +127,7 @@ public class RoutesController {
 		ColumnInfo column=columnService.getColumnById(Integer.valueOf(columnId));
 		route.setColumn(column);
 		boolean flag=routesService.save(route);
+		log.log(session,"旅游管理","新增线路:"+route.getTitle());
 		if(flag){
 			res.setStatusCode("200");
 			res.setMessage("操作成功");
@@ -257,6 +261,7 @@ public class RoutesController {
 			oldR.setStatus(route.getStatus());
 			oldR.setTitle(route.getTitle());
 			routesService.updateRoute(oldR);
+			log.log(session,"旅游管理","更新线路:"+route.getTitle());
 		} catch (Exception e) {
 			logger.error(e.toString());
 			e.printStackTrace();

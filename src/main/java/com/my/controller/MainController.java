@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.my.exception.CustomException;
 import com.my.po.AdminInfo;
+import com.my.po.OpLogInfo;
 import com.my.service.AdminService;
+import com.my.service.LogService;
 import com.my.util.StringUtil;
 import com.my.util.VerifyCodeUtils;
 import com.my.util.enums.AdminEnums;
@@ -35,6 +38,8 @@ public class MainController {
 
 	@Resource
 	private AdminService adminService;
+	@Autowired
+	private LogService log;
 
 	/**
 	 * 主页面跳转
@@ -72,6 +77,8 @@ public class MainController {
 		if (admin != null) {
 			if(admin.getStatus()==AdminEnums.Normal.getStatus()){
 				session.setAttribute("admin", admin);
+				log.log(session,"子管理员","管理员登录成功:"+admin.getRealName());
+				logger.info("登录成功:"+admin.getRealName());
 				return "index";
 			}else if(admin.getStatus()==AdminEnums.Disable.getStatus()){
 				request.setAttribute("msg", "管理员已被"+AdminEnums.Disable.getName());
@@ -168,7 +175,8 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/updateAdmin")
-	public @ResponseBody AjaxResponse updateAdmin(WebVo webValues) {
+	public @ResponseBody AjaxResponse updateAdmin(WebVo webValues,HttpSession session) {
+		
 		AjaxResponse res=new AjaxResponse();
 		boolean flag=false;
 		String id = webValues.getId();
@@ -182,6 +190,7 @@ public class MainController {
 				throw new CustomException("参数错误");
 			}
 			AdminInfo admin = adminService.getAdminById(Integer.valueOf(id));
+			log.log(session,"","更新子管理员:adminId:"+id);
 			if (!StringUtil.isBlank(loginname)) {
 				admin.setLoginname(loginname);
 			}
@@ -212,11 +221,12 @@ public class MainController {
 		return res;
 	}
 	@RequestMapping("/deleteAdmin")
-	public  @ResponseBody AjaxResponse deleteAdmin(WebVo webValues){
+	public  @ResponseBody AjaxResponse deleteAdmin(WebVo webValues,HttpSession session){
 		AjaxResponse res=new AjaxResponse();
 		boolean flag=false;
 		if(!StringUtil.isBlank(webValues.getId())){
 			flag=adminService.deleteAdmin(webValues.getId());
+			log.log(session,"","删除管理员Id"+webValues.getId());
 		}
 		
 		if (flag) {
@@ -243,11 +253,11 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/addAdmin")
-	public @ResponseBody AjaxResponse addAdmin(AdminInfo admin){
+	public @ResponseBody AjaxResponse addAdmin(AdminInfo admin,HttpSession session){
 		AjaxResponse res=new AjaxResponse();
 		boolean flag=false;
 		flag=adminService.addAdmin(admin);
-		
+		log.log(session,"子管理员","添加子管理员:"+admin.getRealName());
 		if (flag) {
 			res.setStatusCode("200");
 			res.setMessage("添加成功!");
@@ -296,6 +306,7 @@ public class MainController {
 		if (!StringUtil.isBlank(webValues.getOldpassword())&&!StringUtil.isBlank(webValues.getId())) {
 			String enpass=MD5Tools.getKeyedDigest(webValues.getOldpassword(), "");
 			flag = adminService.isPassright(webValues.getId(), enpass);
+			
 		}
 		return flag;
 
@@ -306,7 +317,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/changepass")
-	public @ResponseBody AjaxResponse changepass(@ModelAttribute WebVo webValues){
+	public @ResponseBody AjaxResponse changepass(@ModelAttribute WebVo webValues,HttpSession session){
 		logger.info("修改密码");
 		AjaxResponse res=new AjaxResponse();
 		boolean flag = false;
@@ -314,6 +325,7 @@ public class MainController {
 			//加密密码
 			String enpassword=MD5Tools.getKeyedDigest(webValues.getPassword(), "");
 			flag = adminService.changePass(webValues.getId(), enpassword);
+			log.log(session,"","管理员Id:"+webValues.getId()+"修改密码");
 		}
 		if (flag) {
 			res.setStatusCode("200");
@@ -324,5 +336,21 @@ public class MainController {
 			res.setMessage("修改密码失败!");
 		}
 		return res;
+	}
+	/**
+	 * 获取用户后台操作日志
+	 * @param webVo
+	 * @param pageVo
+	 * @return
+	 */
+	@RequestMapping("/getLogPage")
+	public ModelAndView getLogPage(WebVo webVo,PageValues pageVo){
+		ModelAndView mv=new ModelAndView();
+		pageVo.setPageNum(pageVo.getNumPerPage());
+		QueryParams query=new QueryParams();
+		Page<OpLogInfo> logPage=log.getLogPage(pageVo,query);
+		mv.addObject("logPage",logPage);
+		mv.setViewName("log/logList");
+		return mv;
 	}
 }

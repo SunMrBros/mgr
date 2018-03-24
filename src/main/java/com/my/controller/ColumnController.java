@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.my.exception.CustomException;
 import com.my.po.ColumnInfo;
 import com.my.service.ColumnService;
+import com.my.service.LogService;
 import com.my.util.StringUtil;
 import com.my.util.vo.AjaxResponse;
 import com.my.util.vo.PageValues;
@@ -40,6 +41,8 @@ public class ColumnController {
 	private static Logger logger=Logger.getLogger(ColumnController.class.getName());
 	@Autowired
 	private ColumnService columnService;
+	@Autowired
+	private LogService log;
 	
 	@RequestMapping("/getColumnPage")
 	public ModelAndView getColumnPage(@ModelAttribute PageValues pageValues,@ModelAttribute WebVo webValues){
@@ -88,6 +91,7 @@ public class ColumnController {
 			
 			column.setColumnPicUrl(path);
 			flag=columnService.save(column);
+			log.log(session,"旅游管理","添加了栏目:"+column.getColumnName());
 		} catch (IOException e) {
 			logger.error("保存栏目文件异常"+e.toString());
 			e.printStackTrace();
@@ -132,9 +136,10 @@ public class ColumnController {
 			
 			//数据库删除数据
 			columnService.delColumnInfo(column);
+			log.log(session,"旅游管理","删除栏目:"+column.getColumnName());
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setMessage("删除栏目异常");
+			res.setMessage("删除栏目异常,确认没有线路使用该栏目?");
 			res.setStatusCode("300");
 			return res;
 		}
@@ -214,6 +219,7 @@ public class ColumnController {
 			column.setStatus(co.getStatus());
 			
 			columnService.updateColumnInfo(column);
+			log.log(session,"旅游管理","更新栏目信息:"+column.getColumnName());
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setMessage("更新栏目异常");
