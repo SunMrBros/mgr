@@ -24,7 +24,7 @@ public class LogServiceImpl implements LogService{
 	private LogDao logDao;
 	@Override
 	public Page<OpLogInfo> getLogPage(PageValues pageVo, QueryParams query) {
-		return logDao.getPageList(pageVo.getPageNum(), pageVo.getPageSize(), query);
+		return logDao.getPageList(pageVo.getPageNum()==0?1:pageVo.getPageNum(), pageVo.getPageSize()==0?10:pageVo.getPageSize(), query);
 	}
 	@Override
 	public void log(HttpSession session,String model, String string) {

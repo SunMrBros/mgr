@@ -27,8 +27,23 @@ public class WebVo {
 	private String routeId;
 	
 	private String lunboId;
+	private String cityId;
+	private String province;
 	
 	
+	
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCityId() {
+		return cityId;
+	}
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
 	public String getRouteId() {
 		return routeId;
 	}

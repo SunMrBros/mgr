@@ -22,10 +22,11 @@ public class BaseInfo {
 
 	private int id;
 	private String title;
+	private String picUrl;
 	private String audioUrl;
 	private String videoUrl;
-	private Date openTime;
-	private Date closeTime;
+	private String openTime;
+	private String closeTime;
 	private double ticketPrice;
 	private String url;
 	private int sortNum;
@@ -40,10 +41,12 @@ public class BaseInfo {
 	private String longitude;//经度
 	private String latitude;//纬度
 	
+	private String province;
+	
 	private LocationInfo location;
 	
 	private String content;//内容
-	
+	private Date updateTime;
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
@@ -60,6 +63,13 @@ public class BaseInfo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	@Column(name="pic_url")
+	public String getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
 	@Column(name="audio_url")
 	public String getAudioUrl() {
 		return audioUrl;
@@ -75,17 +85,17 @@ public class BaseInfo {
 		this.videoUrl = videoUrl;
 	}
 	@Column(name="open_time")
-	public Date getOpenTime() {
+	public String getOpenTime() {
 		return openTime;
 	}
-	public void setOpenTime(Date openTime) {
+	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
 	}
 	@Column(name="close_time")
-	public Date getCloseTime() {
+	public String getCloseTime() {
 		return closeTime;
 	}
-	public void setCloseTime(Date closeTime) {
+	public void setCloseTime(String closeTime) {
 		this.closeTime = closeTime;
 	}
 	@Column(name="ticket_price")
@@ -188,4 +198,19 @@ public class BaseInfo {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	@Column(name="update_time")
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	@Column(name="province")
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	
 }

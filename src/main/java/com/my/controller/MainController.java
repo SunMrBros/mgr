@@ -28,8 +28,12 @@ import com.my.util.vo.PageValues;
 import com.my.util.vo.WebVo;
 
 import my.utils.MD5Tools;
+import my.utils.web.page.Direct;
+import my.utils.web.page.FetchMode;
 import my.utils.web.page.Page;
 import my.utils.web.page.ParamCondition;
+import my.utils.web.page.ParamDirect;
+import my.utils.web.page.ParamFetch;
 import my.utils.web.page.QueryParams;
 
 @Controller
@@ -190,7 +194,7 @@ public class MainController {
 				throw new CustomException("参数错误");
 			}
 			AdminInfo admin = adminService.getAdminById(Integer.valueOf(id));
-			log.log(session,"","更新子管理员:adminId:"+id);
+			log.log(session,"管理员模块","更新子管理员:adminId:"+id);
 			if (!StringUtil.isBlank(loginname)) {
 				admin.setLoginname(loginname);
 			}
@@ -226,7 +230,7 @@ public class MainController {
 		boolean flag=false;
 		if(!StringUtil.isBlank(webValues.getId())){
 			flag=adminService.deleteAdmin(webValues.getId());
-			log.log(session,"","删除管理员Id"+webValues.getId());
+			log.log(session,"管理员模块","删除管理员Id"+webValues.getId());
 		}
 		
 		if (flag) {
@@ -344,10 +348,17 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/getLogPage")
-	public ModelAndView getLogPage(WebVo webVo,PageValues pageVo){
+	public ModelAndView getLogPage(@ModelAttribute WebVo webVo,@ModelAttribute PageValues pageVo){
 		ModelAndView mv=new ModelAndView();
-		pageVo.setPageNum(pageVo.getNumPerPage());
+		String loginname=webVo.getLoginname();
 		QueryParams query=new QueryParams();
+		query.getDirects().add(new ParamDirect("opdate",Direct.DESC));
+		if(!StringUtil.isBlank(loginname)){
+			query.getFetchs().add(new ParamFetch("admin","admin",FetchMode.LEFT_JOIN));
+			query.getConditions().add(new ParamCondition("admin.loginname", loginname));
+		}
+		
+		pageVo.setPageSize(pageVo.getNumPerPage());
 		Page<OpLogInfo> logPage=log.getLogPage(pageVo,query);
 		mv.addObject("logPage",logPage);
 		mv.setViewName("log/logList");

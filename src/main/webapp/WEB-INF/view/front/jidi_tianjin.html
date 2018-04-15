@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>科普基地 -- 天津</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<META NAME="MobileOptimized" CONTENT="yes">
+		<!--移动优化-->
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<!--全屏-->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!--网站开启对web app程序的支持。-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="css/jidi.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+		<script src="js/js.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/swiper.js"></script>
+	</head>
+	<body style='background: #fff'>
+		<div id="nav_bottom">
+			<ul>
+				<li  onclick="index()">
+					<img src="img/shouye02.png" alt="">
+					<p>首页</p>
+				</li><li onclick = 'jidi()' style="background: #eee;color: #3399ff">
+					<img src="img/jidi02.png" alt="">
+					<p>基地</p>
+				</li><li onclick = 'xianlu()'>
+					<img src="img/xianlu.png" alt="">
+					<p>线路</p>
+				</li><li onclick = 'fujin()'>
+					<img src="img/fujin.png" alt="">
+					<p>附近</p>
+				</li>
+			</ul>
+		</div>
+
+		<div id="jidi_nav">
+			<div id="jidi_beijing" onclick = 'jidi()'><p>北京</p></div>
+			<div id="jidi_tianjin" class="jidi_on" onclick = 'jidi_tianjin()'><p>天津</p></div>
+			<div id="jidi_hebei" onclick = 'jidi_hebei()'><p>河北</p></div>
+		</div>
+		<div id="jidi_list">
+			<div id="jidi_list_content">
+				<ul>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin01.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天津船厂—大沽船坞的百年传承</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市塘沽区大沽坞路27号天津市船厂</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>295km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_02.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天津经济技术开发区</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市滨海新区</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>297km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_03.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天津港保税区</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市滨海新区海滨五路1号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>302km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_04.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>空客A320天津总装线</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市塘沽区上海道1931号三艾写字楼</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>277km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_05.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天津市滨海新区规划展馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市滨海新区花园街(近泰丰公园南门) </span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>299km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_06.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>中新天津生态城</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津生态城中新大道7号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>306km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_07.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>基辅号航母主题公园（天津滨海航母主题公园</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市滨海新区 汉北路269号航母主题公园</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>312km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_08.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天津中新药业集团中新药业自然人文陈列馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市经济技术开发区第十大街21号中新药业现代中药产业园</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>260km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_09.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天津港博览馆(天津港港口科普教育基地)</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津滨海新区（塘沽）津港路99号西侧</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>301km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tianjin_10.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>紫云公园</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>天津市滨海新区塘沽街</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>296km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+</body>
+</html>

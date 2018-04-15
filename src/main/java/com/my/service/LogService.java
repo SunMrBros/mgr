@@ -12,6 +12,12 @@ public interface LogService {
 
 	public Page<OpLogInfo> getLogPage(PageValues pageVo, QueryParams query);
 
+	/**
+	 * 
+	 * @param session
+	 * @param model 操作模块
+	 * @param string 操作内容
+	 */
 	public void log(HttpSession session,String model ,String string);
 
 }

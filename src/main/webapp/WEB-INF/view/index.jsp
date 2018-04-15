@@ -74,6 +74,9 @@
 <script src="<%=path %>/dwz/js/dwz.history.js" type="text/javascript"></script>
 <script src="<%=path %>/dwz/js/dwz.combox.js" type="text/javascript"></script>
 <script src="<%=path %>/dwz/js/dwz.print.js" type="text/javascript"></script>
+ <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=erX4rnXqpHS3yMqfC0RrWowanRdnmwop"></script>
+
+
 <!--
 <script src="bin/dwz.min.js" type="text/javascript"></script>
 -->
@@ -155,9 +158,9 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="hebei" title="河北省基地信息管理">河北省基地信息管理</a></li>
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="beijing" title="北京市基地信息管理">北京市基地信息管理</a></li>
-							<li><a href="<%=path %>//getApplyOrderList.action" target="navTab" rel="tianjin" title="天津市基地信息管理">天津市基地信息管理</a></li>
+							<li><a href="<%=path %>/basement/getBasePage.action?province=1" target="navTab" rel="hebei" title="河北省基地信息管理">河北省基地信息管理</a></li>
+							<li><a href="<%=path %>/basement/getBasePage.action?province=2" target="navTab" rel="beijing" title="北京市基地信息管理">北京市基地信息管理</a></li>
+							<li><a href="<%=path %>/basement/getBasePage.action?province=3" target="navTab" rel="tianjin" title="天津市基地信息管理">天津市基地信息管理</a></li>
 						</ul>
 					</div> 	
 					

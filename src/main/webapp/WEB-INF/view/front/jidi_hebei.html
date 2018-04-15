@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>科普基地 -- 河北</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<META NAME="MobileOptimized" CONTENT="yes">
+		<!--移动优化-->
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<!--全屏-->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!--网站开启对web app程序的支持。-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="css/jidi.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+		<script src="js/js.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/swiper.js"></script>
+	</head>
+	<body style='background: #fff'>
+		<div id="nav_bottom">
+			<ul>
+				<li  onclick="index()">
+					<img src="img/shouye02.png" alt="">
+					<p>首页</p>
+				</li><li onclick = 'jidi()' style="background: #eee;color: #3399ff">
+					<img src="img/jidi02.png" alt="">
+					<p>基地</p>
+				</li><li onclick = 'xianlu()'>
+					<img src="img/xianlu.png" alt="">
+					<p>线路</p>
+				</li><li onclick = 'fujin()'>
+					<img src="img/fujin.png" alt="">
+					<p>附近</p>
+				</li>
+			</ul>
+		</div>
+
+		<div id="jidi_nav">
+			<div id="jidi_beijing" onclick = 'jidi()'><p>北京</p></div>
+			<div id="jidi_tianjin" onclick = 'jidi_tianjin()'><p>天津</p></div>
+			<div id="jidi_hebei" class="jidi_on" onclick = 'jidi_hebei()'><p>河北</p></div>
+		</div>
+		<div id="jidi_list">
+			<div id="jidi_list_content">
+				<ul>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_01.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>河北省青少年科技教育基地(河北小五台山国家级自然保护区省级科普基地)</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>河北省蔚县小五台自然保护区管理局</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>228km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_02.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>承德市钒电池展示馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>承德市双滦区滦电路北侧 </span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>425km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_03.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>丰宁环境绿化交流中心科普基地/p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>丰宁满族自治县城九龙山公园内</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>396km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_04.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>衡水市气象科普基地</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>衡水市桃城区京衡南大街766号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>111km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_05.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>石家庄市防震减灾科普教育培训基地</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市谈固西街116号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>4km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_06.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>山海关长城博物馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>河北省秦皇岛市山海关区第一关路</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>503km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_07.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>昌黎黄金海岸国家级自然保护区科普教育基地</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>河北昌黎国际滑沙场路北</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>452km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_08.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>秦皇岛鸟类博物馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>秦皇岛市北戴河区滨海大道与鸽赤路交叉口</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>476km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_09.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>藁城市农业高科技园区</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市藁城市市区西南3公里处</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>29km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/hebei_10.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>平山县东方巨龟苑旅游景区</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄北二环沿石闫路至平山县在兴山商城转平光路南行8公里到达东方巨龟苑</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>37km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+</body>
+</html>

@@ -9,34 +9,23 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<form id="pagerForm" method="post" action="<%=path%>/order/getApplyOrderList.action">
+<form id="pagerForm" method="post" action="<%=path%>/basement/getBaseList.action">
 	<input type="hidden" name="pageNum" value="1"/>
-	<input type="hidden"name="numPerPage"value="${orderPage.pageSize }"/>
-	<input type="hidden" name="username" value="${queryValue.username}"/>
-	<input type="hidden" name="startDate" value="<fmt:formatDate value="${queryValue.startDate }" pattern="yyyy-MM-dd"/>" />
-	<input type="hidden" name="endDate" value="<fmt:formatDate value="${queryValue.endDate }" pattern="yyyy-MM-dd"/>" />
+	<input type="hidden"name="numPerPage"value="${basePage.pageSize }"/>
+	<input type="hidden" name="title" value="${webVo.title}"/>
 </form>
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="<%=path%>/order/getApplyOrderList.action"
+	<form onsubmit="return navTabSearch(this);" action="<%=path%>/basement/getBasePage.action"
 		method="post" onreset="$(this).find('select.combox').comboxReset()">
 		<div class="searchBar">
 			<table class="searchContent">
 				<tr>
-					<%-- <td>订单编号：<input type="text" name="orderId"
-						value="<c:if test="${queryValue.orderId!=0 }">${queryValue.orderId }</c:if>" />
-					</td> --%>
-					<td>客户姓名：<input type="text" name="username"
-						value="${queryValue.username }" />
+					<td>标题：<input type="text" name="title"
+						value="${webVo.title }" />
 					</td>
 					<td>
-					<td class="dateRange">申请日期: <input name="startDate"
-						class="date readonly" readonly="readonly" type="text" value="<fmt:formatDate value="${queryValue.startDate }" pattern="yyyy-MM-dd"/>">
-						<span class="limit">-</span> <input name="endDate"
-						class="date readonly" readonly="readonly" type="text" value="<fmt:formatDate value="${queryValue.endDate }" pattern="yyyy-MM-dd"/>">
-						
-					</td>
 				</tr>
 			</table>
 			<div class="subBar">
@@ -51,36 +40,36 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<%=path %>/order/getOrderDetail.action?orderId={order_id}" target="dialog" rel="applyorder_detail" height="400"><span>详情</span></a></li>
-			<li><a class="delete"
-				href="<%=path %>/order/delOrder.action?orderId={order_id}" target="ajaxTodo"
-				title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="add" href="<%=path %>/basement/toAddBase.action?province=${webVo.province}" target="dialog" width="650" height="680"  rel="add_base"><span>添加基地信息</span></a></li>
+			<li><a class="delete" href="<%=path %>/basement/delBase.action?baseId={base_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除基地信息</span></a></li>
+			<li><a class="edit" href="<%=path %>/basement/toEditBase.action?baseId={base_id}" height="350" target="dialog" rel="edit_base"><span>修改基地信息</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="138">
 		<thead>
 			<tr>
-				<th width="80">订单编号</th>
-				<th width="50" align="center">客户姓名</th>
-				<th width="100">联系电话</th>
-				<th width="150">证件号码</th>
-				<th width="50" align="center">贷款金额</th>
-				<th width="50" align="center">分期数</th>
-				<th width="80">申请日期</th>
+				<th width="30" align="center">序号</th>
+				<th width="50" align="center">名称</th>
+				<th width="50" align="center">管理员</th>
+				<th width="80" align="center">电话</th>
+				<th width="50" align="center">城市</th>
+				<th width="50" align="center">地区</th>
+				<th width="30" align="center">排序</th>
+				<th width="50" align="center">状态</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${orderPage.results }" var="order">
-
-				<tr target="order_id" rel="${order.id }">
-					<td>${order.id }</td>
-					<td>${order.customer.username }</td>
-					<td>${order.customer.telephone }</td>
-					<td>${order.customer.identifyid }</td>
-					<td>${order.money }</td>
-					<td>${order.expect }</td>
-					<td>${order.ordertime }</td>
+			<c:forEach items="${basePage.results }" var="base" varStatus="index">
+				<tr target="base_id" rel="${base.id }">
+					<td>${(basePage.pageNum-1)*basePage.pageSize+index.index+1 }</td>
+					<td>${base.title }</td>
+					<td>${base.admin.realName }</td>
+					<td>${base.telephone }</td>
+					<td>${base.city }</td>
+					<td>${base.area }</td>
+					<td>${base.sortNum }</td>
+					<td><c:if test="${base.status==1 }">有效</c:if><c:if test="${base.status==0 }">无效</c:if></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -89,15 +78,15 @@
 		<div class="pages">
 			<span>显示</span> <select class="combox" name="numPerPage"
 				onchange="navTabPageBreak({numPerPage:this.value})">
-				<option value="10"<c:if test="${orderPage.pageSize==10 }">selected</c:if>>10</option>
-				<option value="20"<c:if test="${orderPage.pageSize==20 }">selected</c:if>>20</option>
-				<option value="30"<c:if test="${orderPage.pageSize==30 }">selected</c:if>>30</option>
-				<option value="40"<c:if test="${orderPage.pageSize==40 }">selected</c:if>>40</option>
-			</select> <span>条，共${orderPage.totalCount}条
+				<option value="10"<c:if test="${basePage.pageSize==10 }">selected</c:if>>10</option>
+				<option value="20"<c:if test="${basePage.pageSize==20 }">selected</c:if>>20</option>
+				<option value="30"<c:if test="${basePage.pageSize==30 }">selected</c:if>>30</option>
+				<option value="40"<c:if test="${basePage.pageSize==40 }">selected</c:if>>40</option>
+			</select> <span>条，共${basePage.totalCount}条
 		</div>
 
-		<div class="pagination" targetType="navTab" totalCount="${orderPage.totalCount}"
-			numPerPage="${orderPage.pageSize}" pageNumShown="5" currentPage="${orderPage.pageNum}"></div>
+		<div class="pagination" targetType="navTab" totalCount="${basePage.totalCount}"
+			numPerPage="${basePage.pageSize}" pageNumShown="5" currentPage="${basePage.pageNum}"></div>
 
 	</div>
 </div>

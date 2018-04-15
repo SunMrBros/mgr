@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>科普基地 -- 北京</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<META NAME="MobileOptimized" CONTENT="yes">
+		<!--移动优化-->
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<!--全屏-->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!--网站开启对web app程序的支持。-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="css/jidi.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+		<script src="js/jquery.min.js"></script>
+	
+		
+		<script src="js/main.js"></script>
+		<script src="js/swiper.js"></script>
+		
+	</head>
+	<body style='background: #fff'>
+		<div id="nav_bottom">
+			<ul>
+				<li onclick="index()">
+					<img src="img/shouye02.png" alt="">
+					<p>首页</p>
+				</li>
+				<li onclick = 'jidi()' style="background: #eee;color: #3399ff">
+					<img src="img/jidi02.png" alt="">
+					<p>基地</p>
+				</li>
+				<li onclick = 'xianlu()'>
+					<img src="img/xianlu.png" alt="">
+					<p>线路</p>
+				</li>
+				<li onclick = 'fujin()'>
+					<img src="img/fujin.png" alt="">
+					<p>附近</p>
+				</li>
+			</ul>
+		</div>
+
+		<div id="jidi_nav">
+			<div id="jidi_beijing" class="jidi_on" onclick = 'jidi()'><p>北京</p></div>
+			<div id="jidi_tianjin" onclick = 'jidi_tianjin()'><p>天津</p></div>
+			<div id="jidi_hebei" onclick = 'jidi_hebei()'><p>河北</p></div>
+		</div>
+		<div id="jidi_list">
+			<div id="jidi_list_content">
+				<ul>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian01.jpg" alt="" onclick="goPlace()">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>北京延庆硅化木国家地质公园</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市延庆县妫水北街72号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p style="display:none">116.404, 39.915</p>
+							<p><script>function(){
+								alert("ok");
+							}</script>37km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p onclick="goPlace();">去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian02.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>延庆世界地质公园博物馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市延庆县妫水北街72号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>296km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p onclick="goPlace();">去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian03.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>天葡庄园</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市密云县巨各庄镇各庄村村南200米</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>301km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian04.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>北京密云蔡家洼休闲观光工业园</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市密云县巨各庄镇蔡家洼存甲一号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>329km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian05.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>北京首云矿山公园</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市密云县巨各庄镇豆各庄村北首云矿业股份有限公司</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>336km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian06.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>北京张裕爱斐堡国际酒庄</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市密云县巨各庄镇东白岩村</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>331km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian07.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>北京老爷车博物馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市怀柔区杨宋镇凤翔一园19号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>313km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian08.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>国家中影数字制作基地</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北京市怀柔区杨宋镇凤和一园8号</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>312km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian09.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>中国坦克博物馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北市市昌平区阳坊镇</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>274km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li onclick = 'jidi_xiangqing()'>
+						<div class="jidi_list_content_img">
+							<img src="img/tuijian10.jpg" alt="">
+						</div>
+						<div class="jidi_list_content_p">
+							<p>中国航空博物馆</p>
+							<div class="jidi_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>北市市昌平区阳坊镇</span>
+							</div>
+						</div>
+						<div class="jidi_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>286km</p>
+						</div>
+						<div class="jidi_list_go">
+							<div class="jidi_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="allmap" style=""></div>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=erX4rnXqpHS3yMqfC0RrWowanRdnmwop"></script>
+		<script type="text/javascript">
+		
+			var map = new BMap.Map("allmap");
+			
+			var point = new BMap.Point(116.331398,39.897445);
+			map.centerAndZoom(point,12);
+	
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r){
+			if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			alert("success");
+				var mk = new BMap.Marker(r.point);
+				map.addOverlay(mk);
+				map.panTo(r.point);
+				alert('您的位置：'+r.point.lng+','+r.point.lat);
+			}
+			else {
+		
+				alert('failed'+this.getStatus());
+			}   
+		map.addEventListener("dragend", function(){    
+    var center = map.getCenter();    
+    alert("地图中心点变更为：" + center.lng + ", " + center.lat);    
+}
+);			
+});
+function goPlace(){
+	alert("go");
+}
+		</script>
+</body>
+</html>

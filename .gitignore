@@ -10,3 +10,13 @@ target/classes/com/my/controller/ColumnController.class
 *.class
 
 *.class
+
+*.class
+
+*.class
+
+target/classes/com/my/po/CarouselInfo.class
+
+target/classes/com/my/po/LocationInfo.class
+
+src/main/webapp/video/1.avi

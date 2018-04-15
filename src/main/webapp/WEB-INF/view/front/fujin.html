@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>附近</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<META NAME="MobileOptimized" CONTENT="yes">
+		<!--移动优化-->
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<!--全屏-->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!--网站开启对web app程序的支持。-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" type="text/css" href="css/fujin.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+		<script src="js/js.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/swiper.js"></script>
+	</head>
+	<body style='background: #fff'>
+		<div id="nav_bottom">
+			<ul>
+				<li onclick="index()">
+					<img src="img/shouye02.png" alt="">
+					<p>首页</p>
+				</li><li onclick = 'jidi()'>
+					<img src="img/jidi.png" alt="">
+					<p>基地</p>
+				</li><li onclick = 'xianlu()'>
+					<img src="img/xianlu.png" alt="">
+					<p>线路</p>
+				</li><li onclick = 'fujin()' style="background: #eee;color: #3399ff">
+					<img src="img/fujin02.png" alt="">
+					<p>附近</p>
+				</li>
+			</ul>
+		</div>
+
+		<div id="fujin_list">
+			<div id="fujin_list_content">
+				<ul>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_01.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>河北省图书馆</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市东大街16号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>808m</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_02.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>河北省科学技术馆</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市长安区东大街1号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>869m</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_03.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>石家庄市规划展览馆</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市体育大街东269号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>3km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_04.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>石家庄经济学院地球科学博物馆</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市槐安东路136号河北地质大学校内</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>4km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/hebei_05.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>石家庄市防震减灾科普教育培训基地</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市谈固西街116号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>4km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_06.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>石家庄铁道大学现代铁路技术科普基地</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市北二环东路17号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>5km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_07.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>石家庄生命科学馆</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市槐北路222号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>5km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_08.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>石家庄市公安交通管理局交通控制中心</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>石家庄市中华南大街与南二环交叉口西南角</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>5km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_09.png" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>河北省妇女儿童活动中心</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>河北省石家庄市中山西路485号 </span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>6km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="fujin_list_content_img">
+							<img src="img/fujin_10.jpg" alt="">
+						</div>
+						<div class="fujin_list_content_p">
+							<p>河北正定科技馆</p>
+							<div class="fujin_list_content_cont">
+								<img src="img/dibiao.png" alt="">
+								<span>河北正定兴荣路65号</span>
+							</div>
+						</div>
+						<div class="fujin_list_zuobiao">
+							<img src="img/jidi_zuobiao.png" alt="">
+							<p>13km</p>
+						</div>
+						<div class="fujin_list_go">
+							<div class="fujin_list_go_cont">
+								<img src="img/jidi_go.png" alt="">
+								<p>去这里</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	</html>

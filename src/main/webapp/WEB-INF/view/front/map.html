@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>  
+<html>
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:500px}  
+</style>  
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript??v=2.0&ak=erX4rnXqpHS3yMqfC0RrWowanRdnmwop">
+//v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
+</script>
+</head>  
+ 
+<body>  
+<div id="container" style="display:none;"></div> 
+<div>
+	<input name="" value="" onfocus="showmap();" id="location"/>
+	<input name="" value="" onfocus="showmap();" id="location2"/>
+	<input type="button" onclick="cacu();" value="计算距离"/>
+</div>
+<div></div>
+<script type="text/javascript"> 
+
+var map = new BMap.Map("container");
+map.enableScrollWheelZoom(true); 
+map.addControl(new BMap.NavigationControl());
+// 创建地图实例  
+var point = new BMap.Point(116.404, 39.915);
+// 创建点坐标  
+map.centerAndZoom(point, 15);
+// 初始化地图，设置中心点坐标和地图级别  
+window.setTimeout(function(){  
+    map.panTo(new BMap.Point(116.409, 39.918));    
+}, 2000);
+
+
+map.enableScrollWheelZoom(true); 
+//增加监听事件click
+var flag=true;
+var pointA=new BMap.Point();
+var pointB=new BMap.Point();
+map.addEventListener("click", function(e){    
+    alert(e.point.lng + ", " + e.point.lat); 
+	if(flag){
+		pointA=e;
+		flag=false;
+	}else{
+		pointB=e;
+	}
+$("#location").val(pointA.point.lng+":"+pointA.point.lat);
+$("#location2").val(pointB.point.lng+":"+pointB.point.lat);
+
+});  
+
+
+function showmap(){
+	$("#container").css('display','block'); 
+}
+function cacu(){
+alert(pointA);
+alert(pointB);
+alert("距离是："+(map.getDistance(pointA,pointB)).toFixed(2)+" 米。"); 
+}
+</script>  
+</body>  
+</html>
