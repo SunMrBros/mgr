@@ -44,7 +44,7 @@
 				<label>城市：</label> <select name="cityId" id="city" class="required combox" onchange="getTowns();">
 					<option value="">请选择</option>
 					<c:forEach items="${citys}" var="city">
-						<option value="${city.id }" <c:if test="${base.city==city.cityName }">selected="selected"</c:if>>${city.cityName }</option>
+						<option value="${city.id }">${city.cityName }</option>
 					</c:forEach>
 				</select>
 			</p>
@@ -94,7 +94,7 @@
 					<a class="inputDateButton" href="javascript:;">开始时间</a>
 				</div><br>
 				<div class="unit">
-					<input type="text" name="closeTime" class="date" dateFmt="HH:mm" mmStep="15" readonly="true" value="${closeTime }"/>
+					<input type="text" name="closeTime" class="date" dateFmt="HH:mm" mmStep="15" readonly="true" value="${base.closeTime }"/>
 					<a class="inputDateButton" href="javascript:;">结束时间</a>
 				</div>
 			<p>

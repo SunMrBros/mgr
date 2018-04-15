@@ -58,7 +58,7 @@ public class FileUtil {
 			//删除栏目图片信息
 			File f=new File(local,name);
 			if(f.exists()){
-				f.delete();
+				flag=f.delete();
 			}
 		}
 		return flag;

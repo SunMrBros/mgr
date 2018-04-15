@@ -9,7 +9,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<form id="pagerForm" method="post" action="<%=path%>/basement/getBaseList.action">
+<form id="pagerForm" method="post" action="<%=path%>/basement/getBasePage.action?province=${webVo.province}">
 	<input type="hidden" name="pageNum" value="1"/>
 	<input type="hidden"name="numPerPage"value="${basePage.pageSize }"/>
 	<input type="hidden" name="title" value="${webVo.title}"/>
@@ -17,7 +17,7 @@
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="<%=path%>/basement/getBasePage.action"
+	<form onsubmit="return navTabSearch(this);" action="<%=path%>/basement/getBasePage.action?province=${webVo.province}"
 		method="post" onreset="$(this).find('select.combox').comboxReset()">
 		<div class="searchBar">
 			<table class="searchContent">
@@ -41,7 +41,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="<%=path %>/basement/toAddBase.action?province=${webVo.province}" target="dialog" width="650" height="680"  rel="add_base"><span>添加基地信息</span></a></li>
-			<li><a class="delete" href="<%=path %>/basement/delBase.action?basementId={base_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除基地信息</span></a></li>
+			<li><a class="delete" href="<%=path %>/basement/delBasement.action?basementId={base_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除基地信息</span></a></li>
 			<li><a class="edit" href="<%=path %>/basement/toEditBasement.action?basementId={base_id}" width="650" height="680"  target="dialog" rel="edit_base"><span>修改基地信息</span></a></li>
 			<li class="line">line</li>
 		</ul>
