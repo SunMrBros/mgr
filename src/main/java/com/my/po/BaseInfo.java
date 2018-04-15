@@ -38,13 +38,9 @@ public class BaseInfo {
 	private String address;
 	private AdminInfo admin;
 	
-	private String longitude;//经度
-	private String latitude;//纬度
 	
 	private String province;
-	
-	private LocationInfo location;
-	
+	private String location; 
 	private String content;//内容
 	private Date updateTime;
 	@Id
@@ -133,14 +129,6 @@ public class BaseInfo {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	@ManyToOne
-	@JoinColumn(name="location_id")
-	public LocationInfo getLocation() {
-		return location;
-	}
-	public void setLocation(LocationInfo location) {
-		this.location = location;
-	}
 	@Column(name="city")
 	public String getCity() {
 		return city;
@@ -177,20 +165,6 @@ public class BaseInfo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Column(name="longitude")
-	public String getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-	@Column(name="latitude")
-	public String getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
 	@Column(name="content",columnDefinition="TEXT")
 	public String getContent() {
 		return content;
@@ -212,5 +186,14 @@ public class BaseInfo {
 	public void setProvince(String province) {
 		this.province = province;
 	}
+	@Column(name="location")
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	
 	
 }

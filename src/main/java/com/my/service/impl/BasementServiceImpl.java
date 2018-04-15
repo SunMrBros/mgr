@@ -54,5 +54,26 @@ public class BasementServiceImpl implements BasementService {
 	public CityInfo getCityById(String cityId) {
 		return cityDao.getByID(Integer.valueOf(cityId));
 	}
+	@Override
+	public BaseInfo getBasementById(String basementId) {
+		return baseDao.getByID(Integer.valueOf(basementId));
+	}
+	@Override
+	public void updateBase(BaseInfo base) {
+		baseDao.update(base);
+		
+	}
+	@Override
+	public boolean delBaseInfo(BaseInfo base) {
+		boolean flag=false;
+		try {
+			baseDao.delete(base);
+			flag=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag=false;
+		}
+		return flag;
+	}
 
 }

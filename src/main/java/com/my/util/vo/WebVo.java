@@ -29,9 +29,16 @@ public class WebVo {
 	private String lunboId;
 	private String cityId;
 	private String province;
+	private String basementId;
 	
 	
 	
+	public String getBasementId() {
+		return basementId;
+	}
+	public void setBasementId(String basementId) {
+		this.basementId = basementId;
+	}
 	public String getProvince() {
 		return province;
 	}

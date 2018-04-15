@@ -41,4 +41,26 @@ public class FileUtil {
 		}
 		return path;
 	}
+	
+	/**
+	 * 删除数据库中url中保存的文件
+	 * @param fileUrl 数据库中文件地址
+	 * @param dir 项目中实际保存文件的 文件夹
+	 * @param session HTTPSession
+	 * @return
+	 */
+	public static boolean delFile(String fileUrl,String dir,HttpSession session){
+		boolean flag=false;
+		
+		String name=fileUrl.substring(fileUrl.lastIndexOf("/"));
+		if(!StringUtil.isBlank(fileUrl)){
+			String local=session.getServletContext().getRealPath(dir);
+			//删除栏目图片信息
+			File f=new File(local,name);
+			if(f.exists()){
+				f.delete();
+			}
+		}
+		return flag;
+	}
 }

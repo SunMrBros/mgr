@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -85,12 +86,16 @@ public class BasementController {
 	public ModelAndView toAddBase(@ModelAttribute WebVo webVo){
 		ModelAndView mv=new ModelAndView();
 		List<CityVo> citys=new ArrayList<CityVo>();
-		//TODO:初始化数据
 		List<CityInfo> cityss=baseService.getCitys();
 		for(CityInfo c:cityss){
 			CityVo cv=new CityVo();
 			cv.setId(c.getId());
 			cv.setCityName(c.getCityName());
+			if(citys.contains(cv)){
+				continue;
+			}else{
+				citys.add(cv);
+			}
 		}
 		
 		mv.setViewName("basement/addBasement");
@@ -162,6 +167,7 @@ public class BasementController {
 			base.setProvince(province);
 			base.setArea(area);
 			base.setCity(city);
+			base.setLocation(basement.getLocation());
 			base.setCloseTime(basement.getCloseTime());
 			base.setOpenTime(basement.getOpenTime());
 			base.setContent(basement.getContent());
@@ -184,6 +190,7 @@ public class BasementController {
 			base.setTitle(basement.getTitle());
 			base.setUrl(basement.getUrl());
 			baseService.save(base);
+			log.log(session, "基地模块", "添加基地信息");
 		} catch (Exception e) {
 			logger.error(e.toString());
 			e.printStackTrace();
@@ -204,5 +211,200 @@ public class BasementController {
 		
 		return res;
 	}
+	/**
+	 * 跳转到编辑基地信息页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/toEditBasement")
+	public String toEditBasement(Model model,@ModelAttribute WebVo webVo){
+		String basementId=webVo.getBasementId();
+		if(StringUtil.isBlank(basementId)){
+			return "redirect:basement/getBasePage.action";
+		}
+		BaseInfo basement=baseService.getBasementById(basementId);
+		List<CityVo> citys=new ArrayList<CityVo>();
+		List<CityInfo> cityss=baseService.getCitys();
+		for(CityInfo c:cityss){
+			CityVo cv=new CityVo();
+			cv.setId(c.getId());
+			cv.setCityName(c.getCityName());
+			if(citys.contains(cv)){
+				continue;
+			}else{
+				citys.add(cv);
+			}
+		}
+		model.addAttribute("citys", citys);
+		model.addAttribute("base", basement);
+		return "basement/editBasement";
+	}
+	/**
+	 * 编辑基地信息
+	 * @param webVo
+	 * @return
+	 */
+	@RequestMapping("/editBasement")
+	public @ResponseBody AjaxResponse editBasement(WebVo webVo,BasementVo basement,HttpSession session,HttpServletRequest request){
+		logger.info("编辑基地信息");
+		AjaxResponse res=new AjaxResponse();
+		AdminInfo admin=(AdminInfo)session.getAttribute("admin");
+		String basementId=webVo.getBasementId();
+		if(StringUtil.isBlank(basementId)){
+			res.setMessage("参数异常basementId is needed");
+			res.setStatusCode("300");
+			return res;
+		}
+		try {
+			BaseInfo base=baseService.getBasementById(basementId);
+			
+			base.setUpdateTime(new Date());
+			base.setAddress(basement.getAddress());
+			base.setAdmin(admin);
+			String area=null;
+			String city=null;
+			if(!StringUtil.isBlank(basement.getCityId())){
+				CityInfo c=baseService.getCityById(basement.getCityId());
+				city=c.getCityName();
+				if(!StringUtil.isBlank(basement.getTownId())){
+					Set<TownInfo> ts=c.getTowns();
+					for(TownInfo t:ts){
+						if(t.getId()==Integer.valueOf(basement.getTownId())){
+							area=t.getTownName();
+						}
+					}
+				}
+				
+			}
+			
+			
+			base.setProvince(basement.getProvince());
+			base.setArea(area);
+			base.setCity(city);
+			base.setCloseTime(basement.getCloseTime());
+			base.setOpenTime(basement.getOpenTime());
+			base.setContent(basement.getContent());
+			
+			boolean delF=true;
+			MultipartFile pic=basement.getPic();
+			String picUrl=FileUtil.saveFile(pic, "basementimg", request);
+			if(picUrl!=null){
+				//TODO:删除旧文件
+				delF=FileUtil.delFile(base.getVideoUrl(), "basementimg", session);
+				if(delF){
+					base.setPicUrl(picUrl);
+				}
+				
+			}
+			
+			MultipartFile video=basement.getVideo();
+			String videoUrl=FileUtil.saveFile(video, "video", request);
+			if(videoUrl!=null){
+				//TODO删除旧文件
+				if(delF){
+					base.setVideoUrl(videoUrl);
+					delF=FileUtil.delFile(base.getVideoUrl(), "video", session);
+				}
+				
+			}
+			
+			MultipartFile audio=basement.getAudio();
+			String audioUrl=FileUtil.saveFile(audio, "audio", request);
+			if(audioUrl!=null){
+				//TODO:删除旧文件
+				if(delF){
+					delF=FileUtil.delFile(base.getVideoUrl(), "audio", session);
+					base.setAudioUrl(audioUrl);
+				}
+				
+			}
+			
+			if(!delF){
+				logger.error("delete file faile!");
+				res.setMessage("更新基地信息,删除旧文件出错");
+				res.setStatusCode("300");
+				return res;
 
+			}
+			base.setRecommend(basement.getRecommend());
+			base.setSortNum(basement.getSortNum());
+			base.setStatus(basement.getStatus());
+			base.setTelephone(basement.getTelephone());
+			base.setTicketPrice(basement.getTicketPrice());
+			base.setTitle(basement.getTitle());
+			base.setUrl(basement.getUrl());
+			
+			baseService.updateBase(base);
+		} catch (Exception e) {
+			logger.error(e.toString());
+			e.printStackTrace();
+			res.setMessage("更新基地信息异常");
+			res.setStatusCode("300");
+			return res;
+		}
+		res.setMessage("更新基地信息成功");
+		res.setStatusCode("200");
+		res.setCallbackType("closeCurrent");
+		if(Integer.valueOf(basement.getProvince())==ProvinceEnum.Hebei.getStatus()){
+			res.setNavTabId("hebei");
+		}else if(Integer.valueOf(basement.getProvince())==ProvinceEnum.Beijing.getStatus()){
+			res.setNavTabId("beijing");
+		}else if(Integer.valueOf(basement.getProvince())==ProvinceEnum.Tianjin.getStatus()){
+			res.setNavTabId("tianjin");
+		}
+		return res;
+	}
+
+	/**
+	 * 删除基地信息
+	 * @param webVo
+	 * @return
+	 */
+	@RequestMapping("/delBasement")
+	public @ResponseBody AjaxResponse toEditBasement(WebVo webVo,HttpSession session){
+		AjaxResponse res=new AjaxResponse();
+		String basementId=webVo.getBasementId();
+		if(StringUtil.isBlank(basementId)){
+			res.setMessage("basementId is needed");
+			res.setStatusCode("300");
+			return res;
+		}
+		BaseInfo base=baseService.getBasementById(basementId);
+		if(base==null){
+			res.setMessage("删除基地信息不存在");
+			res.setStatusCode("300");
+			return res;
+		}
+		boolean delF=true;
+		if(base.getPicUrl()!=null){
+			delF=FileUtil.delFile(base.getVideoUrl(), "basementimg", session);
+			
+		}
+		if(base.getVideoUrl()!=null){
+			if(delF){
+				delF=FileUtil.delFile(base.getVideoUrl(), "video", session);
+			}
+		}
+		if(base.getAudioUrl()!=null){
+			if(delF){
+				delF=FileUtil.delFile(base.getVideoUrl(), "audio", session);
+			}
+		}
+		
+		if(!delF){
+			logger.error("delete file faile!");
+			res.setMessage("删除基地信息,删除旧文件出错");
+			res.setStatusCode("300");
+			return res;
+
+		}else{
+			delF=baseService.delBaseInfo(base);
+		
+			logger.info("delete baseInfo OK!");
+			res.setMessage("删除基地信息完成");
+			res.setStatusCode("200");
+		}
+		
+		return res;
+	}
 }

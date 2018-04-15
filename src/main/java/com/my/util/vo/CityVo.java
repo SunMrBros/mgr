@@ -16,5 +16,18 @@ public class CityVo {
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if( obj instanceof CityVo){
+			CityVo c=(CityVo)obj;
+			if(c.getId()==this.getId()){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
 	
 }

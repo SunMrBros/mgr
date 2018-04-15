@@ -40,4 +40,24 @@ public interface BasementService {
 	 */
 	public CityInfo getCityById(String cityId);
 
+	/**
+	 * 通过id获取basement基地信息
+	 * @param basementId
+	 * @return
+	 */
+	public BaseInfo getBasementById(String basementId);
+
+	/**
+	 * 更新基地信息
+	 * @param base
+	 */
+	public void updateBase(BaseInfo base);
+
+	/**
+	 *删除基地信息
+	 * @param base
+	 * @return
+	 */
+	public boolean delBaseInfo(BaseInfo base);
+
 }

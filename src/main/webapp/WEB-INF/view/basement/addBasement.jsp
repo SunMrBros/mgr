@@ -88,7 +88,7 @@
 			<p>
 			<label>内容：</label>
 			<div class="unit">
-				<textarea name="content" class="editor" name="description" rows="20" cols="85"></textarea>
+				<textarea name="content" class="editor" rows="20" cols="85"></textarea>
 			</div>
 			<p>
 				<label>音频：</label>

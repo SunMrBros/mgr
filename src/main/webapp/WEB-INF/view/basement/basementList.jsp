@@ -41,8 +41,8 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="<%=path %>/basement/toAddBase.action?province=${webVo.province}" target="dialog" width="650" height="680"  rel="add_base"><span>添加基地信息</span></a></li>
-			<li><a class="delete" href="<%=path %>/basement/delBase.action?baseId={base_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除基地信息</span></a></li>
-			<li><a class="edit" href="<%=path %>/basement/toEditBase.action?baseId={base_id}" height="350" target="dialog" rel="edit_base"><span>修改基地信息</span></a></li>
+			<li><a class="delete" href="<%=path %>/basement/delBase.action?basementId={base_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除基地信息</span></a></li>
+			<li><a class="edit" href="<%=path %>/basement/toEditBasement.action?basementId={base_id}" width="650" height="680"  target="dialog" rel="edit_base"><span>修改基地信息</span></a></li>
 			<li class="line">line</li>
 		</ul>
 	</div>
