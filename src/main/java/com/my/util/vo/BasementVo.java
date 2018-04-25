@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BasementVo {
 
+	private String baseId;
 	private String title;
 	private MultipartFile audio;
 	private MultipartFile video;
@@ -23,6 +24,14 @@ public class BasementVo {
 	private String townId;
 	private String province;
 	
+	public String getBaseId() {
+		return baseId;
+	}
+
+	public void setBaseId(String baseId) {
+		this.baseId = baseId;
+	}
+
 	public String getProvince() {
 		return province;
 	}

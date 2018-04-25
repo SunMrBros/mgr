@@ -1,5 +1,7 @@
 package com.my.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +52,11 @@ public class LunboServiceImpl implements LunboService {
 	@Override
 	public void updateLunboInfo(LunboInfo Lunbo) {
 		LunboDao.update(Lunbo);
+	}
+
+	@Override
+	public List<LunboInfo> getLunboList() {
+		return LunboDao.getListAll();
 	}
 
 }

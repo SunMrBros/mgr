@@ -183,6 +183,7 @@
 	var map = new BMap.Map("BMapcontainer");
 	map.enableScrollWheelZoom(true); 
 	map.addControl(new BMap.NavigationControl());
+	
 	// 创建地图实例  
 	var point = new BMap.Point(116.404, 39.915);
 	// 创建点坐标  

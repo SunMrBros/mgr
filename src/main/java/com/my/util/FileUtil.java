@@ -51,7 +51,9 @@ public class FileUtil {
 	 */
 	public static boolean delFile(String fileUrl,String dir,HttpSession session){
 		boolean flag=false;
-		
+		if(fileUrl==null){
+			return true;
+		}
 		String name=fileUrl.substring(fileUrl.lastIndexOf("/"));
 		if(!StringUtil.isBlank(fileUrl)){
 			String local=session.getServletContext().getRealPath(dir);

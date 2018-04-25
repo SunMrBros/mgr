@@ -1,5 +1,7 @@
 package com.my.service;
 
+import java.util.List;
+
 import com.my.po.LunboInfo;
 import com.my.util.vo.PageValues;
 
@@ -40,5 +42,11 @@ public interface LunboService {
 	 * @param Lunbo
 	 */
 	public void updateLunboInfo(LunboInfo Lunbo);
+
+	/**
+	 * 获取所有轮播图
+	 * @return
+	 */
+	public List<LunboInfo> getLunboList();
 
 }

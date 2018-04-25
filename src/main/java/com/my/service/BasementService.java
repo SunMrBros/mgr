@@ -60,4 +60,11 @@ public interface BasementService {
 	 */
 	public boolean delBaseInfo(BaseInfo base);
 
+	/**
+	 * 条件查询基地信息
+	 * @param query
+	 * @return
+	 */
+	public List<BaseInfo> getBasesByQuery(QueryParams query);
+
 }

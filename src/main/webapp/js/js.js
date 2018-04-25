@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 
 function jidi(){window.location.href = "jidi.html"}
-function jidi_xiangqing(){window.location.href = "jidi_xiangqing.html"}
+function jidi_xiangqing(url){window.location.href = url}
 function xianlu(){window.location.href = "xianlu.html"}
 function index(){window.location.href = "index.html"}
 function jidi_tianjin(){window.location.href = "jidi_tianjin.html"}

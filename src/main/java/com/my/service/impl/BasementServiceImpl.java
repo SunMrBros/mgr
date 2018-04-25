@@ -75,5 +75,9 @@ public class BasementServiceImpl implements BasementService {
 		}
 		return flag;
 	}
+	@Override
+	public List<BaseInfo> getBasesByQuery(QueryParams query) {
+		return baseDao.getListByQueryParams(query);
+	}
 
 }

@@ -349,6 +349,7 @@ public class BasementController {
 			base.setUrl(basement.getUrl());
 
 			baseService.updateBase(base);
+			log.log(session, "基地模块", "更新基地信息");
 		} catch (Exception e) {
 			logger.error(e.toString());
 			e.printStackTrace();
@@ -418,6 +419,7 @@ public class BasementController {
 		delF = baseService.delBaseInfo(base);
 		if(delF){
 			logger.info("delete baseInfo OK!");
+			log.log(session, "基地模块", "删除基地信息");
 			res.setMessage("删除基地信息完成");
 			res.setStatusCode("200");
 		}else{

@@ -76,7 +76,8 @@
 <script src="<%=path %>/dwz/js/dwz.print.js" type="text/javascript"></script>
  <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=erX4rnXqpHS3yMqfC0RrWowanRdnmwop"></script>
 
-
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchControl/1.4/src/SearchControl_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchControl/1.4/src/SearchControl_min.css" />
 <!--
 <script src="bin/dwz.min.js" type="text/javascript"></script>
 -->
