@@ -13,7 +13,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>404</title>
+	<title>404 找不到了</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<style type="text/css">
 		body{
